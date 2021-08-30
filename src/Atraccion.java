@@ -1,39 +1,39 @@
+
+
 public class Atraccion extends Producto {
 
-	private String nombreDeLaAtraccion;
+	public String nombre;
+	private int cupo;
+	private double tiempo;
+	private double costo;
+	private tipo tipoAtraccion;
 	
-	private int cupoDePersonasDisponibles;
-  
-	public Atraccion(String nombreDeLaAtraccion, tipo tipoDeAtraccion, double costo, double tiempo, int cupoDePersonasDisponibles) {
-		super(costo, tiempo, tipoDeAtraccion);
-		this.nombreDeLaAtraccion = nombreDeLaAtraccion;
-	
-		this.cupoDePersonasDisponibles = cupoDePersonasDisponibles;
-		
+	public Atraccion(String nombre, tipo tipoDeAtraccion, double costo, double tiempo, int cupo) {
+		super(nombre);
+		this.cupo = cupo;
+		this.tiempo = tiempo;
+		this.costo = costo;
+		this.tipoAtraccion = tipoDeAtraccion;
 	}
 	
-	public Atraccion(){
-		
-	}
-
-	public String getNombreDeLaAtraccion() {
-		return nombreDeLaAtraccion;
-	}
-
-	public double getCosto() {
-		return costo;
-	}
-
-	public double getPromedioDeTiempo() {
-		return tiempo;
-	}
-
-	public int getCupoDePersonasDisponibles() {
-		return cupoDePersonasDisponibles;
+	public String getNombre() {
+		return super.nombre;
 	}
 	
 	public tipo getTipoDeAtraccion() {
-		return tipoDeAtraccion;
+		return this.tipoAtraccion;
+	}
+	
+	public double getCosto() {
+		return this.costo;
+	}
+	
+	public double getTiempo() {
+		return this.tiempo;
+	}
+	
+	public double getCupo() {
+		return this.cupo;
 	}
 
 }

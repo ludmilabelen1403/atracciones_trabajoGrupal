@@ -2,19 +2,17 @@
 import static org.junit.Assert.*;
 
 public class Test {
-	private Paisaje p1;
-	private Paisaje p2;
+	private Atraccion p1;
+	private Atraccion p2;
 
 	@org.junit.Test
 	public void promocionTest() {
-		Paisaje p1 = new Paisaje("Minas Tirith", 5, 2.5, 25);
-		Paisaje p2 = new Paisaje("Abismo", 5, 2, 15);
-		Paisaje[] atraccionesP = new Paisaje[2];
-		atraccionesP[0] = p1;
-		atraccionesP[1] = p2;
-//
-//	     PromocionPorcentual(atraccionesP[] atracciones)
-		assertNotNull(p1.getCosto());
+		p1 = new Atraccion("Minas Tirith", tipo.AVENTURA, 5, 2.5, 25);
+		p2 = new Atraccion("Abismo", tipo.AVENTURA, 5, 2, 15);
+
+		PromocionPorcentual promocionPorcentual = new PromocionPorcentual("Pack Aventura", p1, p2, 0.20);
+		
+		assertEquals(8, promocionPorcentual.calcularPromocion(), 0.01);
 	}
 
 }

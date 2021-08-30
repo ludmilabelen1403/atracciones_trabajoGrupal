@@ -1,29 +1,15 @@
-import java.util.ArrayList;
 
 public class PromocionPorcentual extends Promocion {
 
-	public double descuento ;
+protected double descuento;
 	
-
-	public PromocionPorcentual(double costo, tipo tipoDeAtraccion, ArrayList<Producto> listaDeProductos,
-			double descuento) {
-		super(costo, tipoDeAtraccion, listaDeProductos);
+	public PromocionPorcentual(String nombre, Atraccion atraccion1, Atraccion atraccion2, double descuento) {
+		super(nombre, atraccion1, atraccion2);
 		this.descuento = descuento;
 	}
-
-	public PromocionPorcentual(Atraccion atraccion1,Atraccion atraccion2,double descuento) {
-		
-	}
-
 	
 	@Override
-	public double calcularPromocion() {
+	protected double calcularPromocion() {
 		return (atraccion1.getCosto() + atraccion2.getCosto()) * (1- this.descuento);
 	}
-	@Override
-	public double calcularTiempo() {
-		return atraccion1.getPromedioDeTiempo()+atraccion2.getPromedioDeTiempo();	
-		}
-	
-
 }

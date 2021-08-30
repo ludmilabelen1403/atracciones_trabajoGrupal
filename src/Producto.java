@@ -1,31 +1,15 @@
 import java.util.ArrayList;
 
 
-public abstract class Producto  {
-     public double costo;
-     public double tiempo;
-     public tipo tipoDeAtraccion;
-     
-	public ArrayList<Producto>ListaDeProductos = new ArrayList<Producto>();
-
-	public Producto(double costo, double tiempo, tipo tipoDeAtraccion) {
-		this.costo = costo;
-		this.tiempo = tiempo;
-		this.tipoDeAtraccion = tipoDeAtraccion;
-		
-	}
-
-	public Producto() {
-		
-	}
+public abstract class Producto {
+	ArrayList<Producto> productos = new ArrayList<Producto>();
+	protected String nombre;
+	private double costo;
+	private double tiempo;
+	private tipo tipoDeAtraccion;
 	
-	public Producto(double costo, tipo tipoDeAtraccion, ArrayList<Producto> listaDeProductos) {
-	
-		this.costo = costo;
-		this.tipoDeAtraccion = tipoDeAtraccion;
-		ListaDeProductos = listaDeProductos;
+	protected Producto (String nombre) {
+		this.nombre = nombre;
 	}
-
-
-
 }
+
