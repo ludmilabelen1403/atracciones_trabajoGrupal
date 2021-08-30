@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+package turismoTierraMedia;
 
 public abstract class Promocion extends Producto{
 	protected String nombre;
@@ -9,8 +9,7 @@ public abstract class Promocion extends Producto{
 	
 	protected Promocion(String nombre, Atraccion atraccion1, Atraccion atraccion2) {
 		super(nombre);
-		this.atraccion1 = atraccion1;
-		this.atraccion2 = atraccion2;
+		validarPromocion(atraccion1, atraccion2);
 	}
 	
 	protected abstract double calcularPromocion();
@@ -28,4 +27,13 @@ public abstract class Promocion extends Producto{
 	}
 	
 	protected abstract double calcularTiempo();
+	
+	private void validarPromocion(Atraccion atraccion1, Atraccion atraccion2) {
+		if (atraccion1.getTipoDeAtraccion() != atraccion2.getTipoDeAtraccion()) {
+			throw new Error("La promoción no se puede realizar con dos tipos de atracciones diferentes)");
+		}
+		this.atraccion1 = atraccion1;
+		this.atraccion2 = atraccion2;
+		this.tipoDeAtraccion = atraccion1.getTipoDeAtraccion();
+	}
 }

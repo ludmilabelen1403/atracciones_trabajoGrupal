@@ -1,3 +1,4 @@
+package turismoTierraMedia;
 
 
 public class Atraccion extends Producto {
@@ -8,7 +9,7 @@ public class Atraccion extends Producto {
 	private double costo;
 	private tipo tipoAtraccion;
 	
-	public Atraccion(String nombre, tipo tipoDeAtraccion, double costo, double tiempo, int cupo) {
+	public Atraccion(String nombre, double costo, double tiempo, int cupo, tipo tipoDeAtraccion) {
 		super(nombre);
 		this.cupo = cupo;
 		this.tiempo = tiempo;
@@ -36,7 +37,9 @@ public class Atraccion extends Producto {
 		return this.cupo;
 	}
 	
-	
-
+	@Override
+	public String toString() {
+		return super.nombre + "(" + this.costo + " monedas, " + this.tiempo + " horas, " + this.cupo + " lugares, tipo: " + this.tipoAtraccion + ")";
+	}
 }
 
