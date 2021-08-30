@@ -1,3 +1,4 @@
+package turismoTierraMedia;
 public class PromocionAxB extends Promocion {
 	public Atraccion atraccionGratis;
 
@@ -17,4 +18,8 @@ public class PromocionAxB extends Promocion {
 		return atraccion1.getTiempo() + atraccion2.getTiempo()+atraccionGratis.getTiempo();
 	}
 	
+	@Override
+	public String toString() {
+		return super.getNombre() + ": " + super.getAtraccion1().getNombre() + " y " + super.getAtraccion2().getNombre() + " con " + this.atraccionGratis.getNombre() + " gratis";
+	}
 }
