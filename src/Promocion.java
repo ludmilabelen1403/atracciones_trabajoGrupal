@@ -1,28 +1,38 @@
+import java.util.ArrayList;
+
+
+
 //
-public class Promocion {
+public abstract class Promocion extends Producto{
 
-// private Atraccion[] atraccion;
+	
+public Atraccion atraccion1;
+public Atraccion atraccion2;
+	
 
-	public double PromocionPorcentual(Atraccion[] atracciones) {
 
-		double costoTotal = 0;
+	public Promocion(double costo, tipo tipoDeAtraccion, ArrayList<Producto> listaDeProductos) {
+		super(costo, tipoDeAtraccion, listaDeProductos);
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Promocion() {
+		
+	}
+	
+	
 
-		for (int i = 0; i < atracciones.length; i++) {
-			costoTotal += atracciones[i].getCosto();
-		}
-
-		costoTotal -= (costoTotal * 0.20);
-		return costoTotal;
+	public Promocion(double costo, double tiempo, tipo tipoDeAtraccion, Atraccion atraccion1, Atraccion atraccion2) {
+		super(costo, tiempo, tipoDeAtraccion);
+		this.atraccion1 = atraccion1;
+		this.atraccion2 = atraccion2;
 	}
 
-	public double CalculaPromocionAbsoluta(Atraccion[] atracciones) {
-		double costoTotal = 0;
-		for (int i = 0; i < atracciones.length; i++) {
-			costoTotal += atracciones[i].getCosto();
-		}
-
-		return costoTotal * 0.75;
-
+	public double calcularPromocion() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
-
-}
+	
+	public double calcularTiempo() {
+		return 0;
+	}
