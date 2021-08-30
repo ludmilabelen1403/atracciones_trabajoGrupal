@@ -35,6 +35,8 @@ public class Atraccion extends Producto {
 	public double getCupo() {
 		return this.cupo;
 	}
+	
+	
 
 }
 

@@ -4,11 +4,12 @@ public class PromocionAbsoluta extends Promocion {
 
 	public double monto;
 	
-	public PromocionAbsoluta() {
-		
+	public PromocionAbsoluta(String nombre, Atraccion atraccion1, Atraccion atraccion2) {
+		super( nombre, atraccion1, atraccion2);
 	}
 		
-		public PromocionAbsoluta(Atraccion atraccion1, Atraccion atraccion2, double monto) {
+		public PromocionAbsoluta(String nombre,Atraccion atraccion1, Atraccion atraccion2, double monto) {
+			super(nombre, atraccion1, atraccion2);
 			this.monto = monto;
 		}
 
@@ -19,7 +20,7 @@ public class PromocionAbsoluta extends Promocion {
 
 		@Override
 		public double calcularTiempo() {
-		return atraccion1.getPromedioDeTiempo()+atraccion2.getPromedioDeTiempo();	
+		return atraccion1.getTiempo()+atraccion2.getTiempo();	
 		}
 	
 

@@ -26,4 +26,6 @@ public abstract class Promocion extends Producto{
 	protected Atraccion getAtraccion2() {
 		return this.atraccion2;
 	}
+	
+	protected abstract double calcularTiempo();
 }

@@ -12,4 +12,9 @@ protected double descuento;
 	protected double calcularPromocion() {
 		return (atraccion1.getCosto() + atraccion2.getCosto()) * (1- this.descuento);
 	}
+
+	@Override
+	public double calcularTiempo() {
+		return atraccion1.getTiempo() + atraccion2.getTiempo();
+	}
 }
