@@ -1,32 +1,39 @@
-public abstract class Atraccion {
+public class Atraccion extends Producto {
 
-	protected String nombreDeLaAtraccion;
-	protected double costo;
-	protected double promedioDeTiempo;
-	protected int cupoDePersonasDisponibles;
-
-	public Atraccion(String nombreDeLaAtraccion, double costo, double promedioDeTiempo, int cupoDePersonasDisponibles) {
-		
+	private String nombreDeLaAtraccion;
+	
+	private int cupoDePersonasDisponibles;
+  
+	public Atraccion(String nombreDeLaAtraccion, tipo tipoDeAtraccion, double costo, double tiempo, int cupoDePersonasDisponibles) {
+		super(costo, tiempo, tipoDeAtraccion);
 		this.nombreDeLaAtraccion = nombreDeLaAtraccion;
-		this.costo = costo;
-		this.promedioDeTiempo = promedioDeTiempo;
+	
 		this.cupoDePersonasDisponibles = cupoDePersonasDisponibles;
+		
+	}
+	
+	public Atraccion(){
+		
 	}
 
-	protected String getNombreDeLaAtraccion() {
+	public String getNombreDeLaAtraccion() {
 		return nombreDeLaAtraccion;
 	}
 
-	protected double getCosto() {
+	public double getCosto() {
 		return costo;
 	}
 
-	protected double getPromedioDeTiempo() {
-		return promedioDeTiempo;
+	public double getPromedioDeTiempo() {
+		return tiempo;
 	}
 
-	protected int getCupoDePersonasDisponibles() {
+	public int getCupoDePersonasDisponibles() {
 		return cupoDePersonasDisponibles;
+	}
+	
+	public tipo getTipoDeAtraccion() {
+		return tipoDeAtraccion;
 	}
 
 }
