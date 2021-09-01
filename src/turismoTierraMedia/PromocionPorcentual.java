@@ -9,6 +9,12 @@ protected double descuento;
 		this.descuento = descuento;
 	}
 	
+	public PromocionPorcentual(String nombre,  double costo, double tiempo, tipo tipoDeAtraccion) {
+		super(nombre, costo, tiempo, tipoDeAtraccion);
+	}
+	
+	
+	
 	@Override
 	public double calcularPromocion() {
 		return (atraccion1.getCosto() + atraccion2.getCosto()) * (1- this.descuento);

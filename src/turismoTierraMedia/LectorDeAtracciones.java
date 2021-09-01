@@ -47,6 +47,11 @@ public class LectorDeAtracciones {
 	return Atracciones;
 }
 	
+	public static void main(String[] args) {
+		LectorDeAtracciones lector = new LectorDeAtracciones();
+
+		System.out.println(lector.getAtracciones("atracciones.txt"));
+	}
 
 	
 }
