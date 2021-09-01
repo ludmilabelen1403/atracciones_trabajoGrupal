@@ -1,4 +1,3 @@
-package turismoTierraMedia;
 
 public class PromocionPorcentual extends Promocion {
 
@@ -9,24 +8,13 @@ protected double descuento;
 		this.descuento = descuento;
 	}
 	
-	public PromocionPorcentual(String nombre,  double costo, double tiempo, tipo tipoDeAtraccion) {
-		super(nombre, costo, tiempo, tipoDeAtraccion);
-	}
-	
-	
-	
 	@Override
-	public double calcularPromocion() {
+	protected double calcularPromocion() {
 		return (atraccion1.getCosto() + atraccion2.getCosto()) * (1- this.descuento);
 	}
 
 	@Override
 	public double calcularTiempo() {
 		return atraccion1.getTiempo() + atraccion2.getTiempo();
-	}
-	
-	@Override
-	public String toString() {
-		return super.getNombre() + " : " + super.getAtraccion1().getNombre() + " y " + super.getAtraccion2().getNombre() + " con un descuento del " + this.descuento + " %";
 	}
 }

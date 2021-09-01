@@ -13,6 +13,9 @@ public class PromocionAbsoluta extends Promocion {
 		super(nombre, atraccion1, atraccion2);
 		this.monto = monto;
 	}
+	public PromocionAbsoluta(String nombre,  double costo, double tiempo, tipo tipoDeAtraccion) {
+		super(nombre, costo, tiempo, tipoDeAtraccion);
+	}
 
 	@Override
 	public double calcularPromocion() {
