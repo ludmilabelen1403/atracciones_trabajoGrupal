@@ -9,14 +9,21 @@ public class Atraccion extends Producto {
 	private double costo;
 	private tipo tipoAtraccion;
 	
-	public Atraccion(String nombre, double costo, double tiempo, int cupo, tipo tipoDeAtraccion) {
+	public Atraccion(String nombre, double costo, double tiempo, int cupo,  tipo tipo) {
 		super(nombre);
 		this.cupo = cupo;
 		this.tiempo = tiempo;
 		this.costo = costo;
-		this.tipoAtraccion = tipoDeAtraccion;
+		this.tipoAtraccion = tipo;
 	}
+
+	public Atraccion(String nombre, double costo, double tiempo, int cupo) {
+		super(nombre);
+		this.cupo = cupo;
+		this.tiempo = tiempo;
+		this.costo = costo;
 	
+	}
 	public String getNombre() {
 		return super.nombre;
 	}

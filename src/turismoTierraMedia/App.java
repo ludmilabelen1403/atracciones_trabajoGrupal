@@ -1,13 +1,12 @@
 package turismoTierraMedia;
 
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Arrays;
+
+
+
 
 public class App {
-	Atraccion [] atracciones;
+/*Atraccion [] atracciones;
 	Usuario[] usuarios;
 	Promocion[] promociones;
 	
@@ -104,8 +103,8 @@ public class App {
 	    
 	    
 	    //Promociones
-	    Promocion[] promociones = new Promocion[10];
-	    int numLineaPromocion = 0;
+	    ArrayList<Promocion> Promociones = new ArrayList<Promocion>();
+	    
 	    
 	    try {
 	    	fr = new FileReader("promociones.txt");
@@ -159,5 +158,9 @@ public class App {
 	        }
 	    }
 	    System.out.println(Arrays.deepToString(promociones));
+	
 	}
+	*/
 }
+
+
