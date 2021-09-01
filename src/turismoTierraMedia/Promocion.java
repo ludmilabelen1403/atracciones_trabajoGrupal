@@ -8,7 +8,10 @@ public abstract class Promocion extends Producto{
 	Atraccion [] atracciones;
 	
 	protected Promocion(String nombre, Atraccion atraccion1, Atraccion atraccion2) {
-		super(nombre);
+		super(nombre, atraccion1.getCosto() + atraccion2.getCosto() , atraccion1.tiempo + atraccion2.tiempo, atraccion1.getTipoDeAtraccion() );
+		
+		
+		
 		validarPromocion(atraccion1, atraccion2);
 	}
 	
