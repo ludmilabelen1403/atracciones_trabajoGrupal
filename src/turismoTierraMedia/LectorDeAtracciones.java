@@ -17,7 +17,7 @@ public class LectorDeAtracciones {
 		ArrayList<Atraccion> Atracciones = new ArrayList<Atraccion>();
 		try {
 			Scanner sc = null;
-			sc = new Scanner(new File("atracciones.txt"));
+			sc = new Scanner(new File(archivo));
 			
 			while(sc.hasNext()) {
 				//leo cada linea del archivo
