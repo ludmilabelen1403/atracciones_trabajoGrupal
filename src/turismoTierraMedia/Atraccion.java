@@ -40,13 +40,19 @@ public class Atraccion extends Producto {
 		return this.tiempo;
 	}
 	
-	public double getCupo() {
+	public int getCupo() {
 		return this.cupo;
 	}
 	
 	@Override
 	public String toString() {
 		return super.nombre + "(" + this.costo + " monedas, " + this.tiempo + " horas, " + this.cupo + " lugares, tipo: " + this.tipoAtraccion + ")";
+	}
+
+	@Override
+	protected boolean esPromo() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
 

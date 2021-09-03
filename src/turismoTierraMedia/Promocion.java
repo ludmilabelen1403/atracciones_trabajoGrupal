@@ -7,6 +7,10 @@ public abstract class Promocion extends Producto{
 	protected tipo tipoDeAtraccion;
 	Atraccion [] atracciones;
 	
+	public Promocion() {
+		
+	}
+	
 	protected Promocion(String nombre, Atraccion atraccion1, Atraccion atraccion2) {
 		super(nombre);
 		validarPromocion(atraccion1, atraccion2);

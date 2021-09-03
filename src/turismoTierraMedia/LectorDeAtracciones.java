@@ -36,6 +36,7 @@ public class LectorDeAtracciones {
 			    Atraccion a = new Atraccion(nombreDeAtraccion,costoDeAtraccion,tiempo,cupo,tipoAtraccion);
 			    
 			    Atracciones.add(a);
+			    
 			}
 			} catch (FileNotFoundException e) {
 		e.printStackTrace();
@@ -47,6 +48,11 @@ public class LectorDeAtracciones {
 	return Atracciones;
 }
 	
-
+public static void main(String[] args) {
+	 LectorDeAtracciones lectorA = new LectorDeAtracciones();
+	 System.out.println(lectorA.getAtraccion());
+	 System.out.println(lectorA.getAtracciones("atracciones.txt"));
+	
+}
 	
 }
