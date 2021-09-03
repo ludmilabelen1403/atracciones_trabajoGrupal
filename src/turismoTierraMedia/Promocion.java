@@ -34,7 +34,7 @@ public abstract class Promocion extends Producto{
 	
 	private void validarPromocion(Atraccion atraccion1, Atraccion atraccion2) {
 		if (atraccion1.getTipoDeAtraccion() != atraccion2.getTipoDeAtraccion()) {
-			throw new Error("La promoción no se puede realizar con dos tipos de atracciones diferentes)");
+			throw new Error("La promociÃ³n no se puede realizar con dos tipos de atracciones diferentes)");
 		}
 		this.atraccion1 = atraccion1;
 		this.atraccion2 = atraccion2;
