@@ -10,7 +10,14 @@ public class LectorDePromociones {
 	ArrayList<Atraccion> ListaDeAtracciones;
 
 	public ArrayList<Promocion> getPromociones(String archivo, ArrayList<Atraccion> ListaDeAtracciones) {
-		ArrayList<Promocion> Promociones = new ArrayList<Promocion>();
+
+		
+			
+		    
+		
+		
+				ArrayList<Promocion> Promociones = new ArrayList<Promocion>();
+
 		FileReader fr = null;
 		BufferedReader br = null;
 //		LectorDeAtracciones lectorAtracciones = new LectorDeAtracciones();
@@ -25,7 +32,7 @@ public class LectorDePromociones {
 				int index1 = 0, index2 = 0, index3 = 0;
 				Promocion a;
 
-				for (int i = 0; i < ListaDeAtracciones.size() - 1; i++) {
+				for (int i = 0; i < ListaDeAtracciones.size()-1; i++) {
 					if (promocion[1].strip().equals(ListaDeAtracciones.get(i).getNombre())) {
 						index1 = i;
 					}
@@ -54,8 +61,7 @@ public class LectorDePromociones {
 								ListaDeAtracciones.get(index2), Double.parseDouble(promocion[3]));
 						double costo = a.calcularPromocion();
 						double tiempo = a.calcularTiempo();
-						p = new PromocionAbsoluta(promocion[0], costo, tiempo,
-								a.getAtraccion1().getTipoDeAtraccion());
+						p = new PromocionAbsoluta(promocion[0], costo, tiempo, a.getAtraccion1().getTipoDeAtraccion());
 					}
 				} else {
 					a = new PromocionAxB(promocion[0], ListaDeAtracciones.get(index1), ListaDeAtracciones.get(index2),
@@ -80,17 +86,13 @@ public class LectorDePromociones {
 		}
 		return Promociones;
 
-	}
+}
 
 	public static void main(String[] args) {
-
-		
-
-		
 		LectorDePromociones lector = new LectorDePromociones();
 
-		System.out.println(lector.getPromociones("promociones.txt", LectorDeAtracciones.getAtracciones("atracciones.txt")));
-		
-		
+		System.out.println(
+				lector.getPromociones("promociones.txt", LectorDeAtracciones.getAtracciones("atracciones.txt")));
+
 	}
 }

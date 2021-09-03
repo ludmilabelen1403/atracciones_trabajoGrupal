@@ -12,11 +12,17 @@ public abstract class Promocion extends Producto {
 
 	protected Promocion(String nombre, Atraccion atraccion1, Atraccion atraccion2) {
 		super(nombre);
-//		validarPromocion(atraccion1, atraccion2);
+		validarPromocion(atraccion1, atraccion2);
 		this.atraccion1 = atraccion1;
 		this.atraccion2 = atraccion2;
 	}
 
+	@Override
+	public boolean esPromo() {
+		return true;
+	}
+	
+	
 	protected abstract double calcularPromocion();
 
 	protected String getNombre() {
