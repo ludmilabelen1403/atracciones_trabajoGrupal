@@ -1,11 +1,40 @@
 package turismoTierraMedia;
 
-
-
-
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class App {
+	
+	private List<Usuario> usuarios;
+	private List<Producto> productos = new LinkedList<Producto>();
+	
+	public static void main(String[] args) {
+		List<Atraccion> atracciones = new LinkedList<Atraccion>();
+		List<Promocion> promociones = new LinkedList<Promocion>();
+		
+		App app = new App();
+		LectorDeUsuarios lector = new LectorDeUsuarios();
+		app.usuarios = lector.getUsuarios("usuarios.txt");
+		LectorDeAtracciones lectorAtracciones = new LectorDeAtracciones();
+		atracciones = lectorAtracciones.getAtracciones("atracciones.txt");
+		LectorDePromociones lectorPromociones = new LectorDePromociones();
+		promociones = lectorPromociones.getPromociones("promociones.txt");
+		
+		for (Atraccion atraccion: atracciones ) {
+			app.productos.add(atraccion);
+		}
+		
+		for (Promocion promocion: promociones) {
+			app.productos.add(promocion);
+		}
+		
+		for (Usuario usuario: app.usuarios) {
+			
+		}
+	}
+	
 /*Atraccion [] atracciones;
 	Usuario[] usuarios;
 	Promocion[] promociones;
@@ -161,6 +190,8 @@ public class App {
 	
 	}
 	*/
+	
+	
 }
 
 
