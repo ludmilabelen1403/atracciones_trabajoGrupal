@@ -9,6 +9,10 @@ public abstract class Producto {
 	public double tiempo;
 	public tipo tipoDeAtraccion;
 
+	public boolean esPromo() {
+		return false;
+	}
+	
 	public Producto(String nombre, double costo, double tiempo, tipo tipoDeAtraccion) {
 
 		this.nombre = nombre;

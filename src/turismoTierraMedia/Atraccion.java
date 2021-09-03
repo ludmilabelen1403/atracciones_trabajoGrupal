@@ -16,6 +16,9 @@ public class Atraccion extends Producto {
 
 
 
+	
+
+
 	public String getNombre() {
 		return super.nombre;
 	}
@@ -32,7 +35,7 @@ public class Atraccion extends Producto {
 		return this.tiempo;
 	}
 
-	public double getCupo() {
+	public int getCupo() {
 		return this.cupo;
 	}
 
