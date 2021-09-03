@@ -17,4 +17,26 @@ public class Usuario {
 	public String toString() {
 		return this.nombre + " prefiere las atracciones del tipo " + this.preferencia + ", tiene " + this.presupuesto + " monedas disponibles y cuenta con " + this.tiempoDisponible + " horas disponibles";
 	}
+	
+	
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public double getPresupuesto() {
+		return presupuesto;
+	}
+
+	public double getTiempoDisponible() {
+		return tiempoDisponible;
+	}
+
+	public tipo getPreferencia() {
+		return this.preferencia;
+	}
+	
+	public void ordenarPorPreferencia() {
+		//List.sort(usuario, new Ofertable.compare());
+	}
 }
