@@ -11,7 +11,6 @@ public class Ofertable implements Comparator<Producto> {
 		this.preferido = tipo;
 	}
 
-	@Override
 	public int compare(Producto o1, Producto o2) {
 		if (o1.tipoDeAtraccion == this.preferido && o2.tipoDeAtraccion == this.preferido) {
 			if (o1.esPromo() && o2.esPromo()) {
@@ -44,7 +43,7 @@ public class Ofertable implements Comparator<Producto> {
 			}
 		} else {
 			if (o1.tipoDeAtraccion == this.preferido)return -1;
-				
+
 
 			return 1;
 		}

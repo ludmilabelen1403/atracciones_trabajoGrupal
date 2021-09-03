@@ -17,7 +17,7 @@ public class LectorDeAtracciones {
 		ArrayList<Atraccion> Atracciones = new ArrayList<Atraccion>();
 		try {
 			Scanner sc = null;
-			sc = new Scanner(new File(archivo));
+			sc = new Scanner(new File("atracciones.txt"));
 			
 			while(sc.hasNext()) {
 				//leo cada linea del archivo
@@ -30,28 +30,32 @@ public class LectorDeAtracciones {
 			    double costoDeAtraccion = Double.parseDouble(datos[1]);
 			    double tiempo = Double.parseDouble(datos[2]);
 			    int cupo =  Integer.parseInt(datos[3]);
-			    String tipoDeAtraccion = datos[4];
-			    tipo tipoAtraccion = tipo.valueOf(tipoDeAtraccion) ;
+			    String tipoAtraccion = datos[4];
+			    tipo tipoDeAtraccion = null;
+			    if (datos[4].equals("Aventura")) {
+	        		tipoDeAtraccion = tipo.AVENTURA;
+	        	} 
+	        	else if (datos[4].equals("Paisaje")){
+	        		tipoDeAtraccion = tipo.PAISAJE;
+	        	}
+	        	else if (datos[4].equals("Degustacion")){
+	        		tipoDeAtraccion = tipo.DEGUSTACION;
+	        	}
 			    
-			    Atraccion a = new Atraccion(nombreDeAtraccion,costoDeAtraccion,tiempo,cupo,tipoAtraccion);
+			    Atraccion a = new Atraccion(nombreDeAtraccion,costoDeAtraccion,tiempo,cupo,tipoDeAtraccion);
 			    
 			    Atracciones.add(a);
+			    
 			}
-			} catch (FileNotFoundException e) {
-		e.printStackTrace();
-		System.out.println("no se encontró archivo");
-			}
-	
-		
-	
-	return Atracciones;
-}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			System.out.println("no se encontró archivo");
+		}
+		return Atracciones;
+	}
 	
 	public static void main(String[] args) {
-		LectorDeAtracciones lector = new LectorDeAtracciones();
-
-		System.out.println(lector.getAtracciones("atracciones.txt"));
+		 LectorDeAtracciones lectorA = new LectorDeAtracciones();
+		 System.out.println(lectorA.getAtracciones("atracciones.txt"));
 	}
-
-	
 }
