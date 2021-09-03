@@ -9,12 +9,8 @@ protected double descuento;
 		this.descuento = descuento;
 	}
 	
-	public PromocionPorcentual(String nombre,  double costo, double tiempo, tipo tipoDeAtraccion) {
-		super(nombre, costo, tiempo, tipoDeAtraccion);
-	}
 	
-	
-	
+
 	@Override
 	public double calcularPromocion() {
 		return (atraccion1.getCosto() + atraccion2.getCosto()) * (1- this.descuento);
@@ -27,6 +23,14 @@ protected double descuento;
 	
 	@Override
 	public String toString() {
-		return super.getNombre() + " : " + super.getAtraccion1().getNombre() + " y " + super.getAtraccion2().getNombre() + " con un descuento del " + this.descuento + " %";
+		return super.getNombre() + " : " + super.getAtraccion1().getNombre() + " y " + super.getAtraccion2().getNombre() + " con un descuento del " + this.descuento + " %"+" por lo que el costo total es de "+ this.calcularPromocion();
+	}
+
+
+
+	@Override
+	protected boolean esPromo() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

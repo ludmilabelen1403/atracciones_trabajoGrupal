@@ -1,26 +1,24 @@
 package turismoTierraMedia;
-
+import java.util.ArrayList;
 
 
 public abstract class Producto {
-
+	ArrayList<Producto> productos = new ArrayList<Producto>();
 	protected String nombre;
-	public double costo;
-	public double tiempo;
-	public tipo tipoDeAtraccion;
-
-	public Producto(String nombre, double costo, double tiempo, tipo tipoDeAtraccion) {
-
-		this.nombre = nombre;
-		this.costo = costo;
-		this.tiempo = tiempo;
-		this.tipoDeAtraccion = tipoDeAtraccion;
-	}
-
-	public Producto(String nombre) {
+	protected double costo;
+	protected double tiempo;
+	tipo tipoDeAtraccion;
+	
+	protected Producto (String nombre) {
 		this.nombre = nombre;
 	}
 	
-	
+	public  Producto() {
+		
+	}
 
+	protected abstract boolean esPromo();
+	
+	
 }
+
