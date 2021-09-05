@@ -1,4 +1,4 @@
-Pack aventura, Bosque Negro, Mordor, 0.20
+Pack 1, Bosque Negro, Mordor, 0.20
 Pack degustacion, Lothlorien, La Comarca, 36
 Pack paisajes, Minas Tirith, Abismo de Helm, Erebor
 Pack degustacionPorcentual, La Comarca, Lothlorien, 0.3

@@ -32,13 +32,15 @@ public class LectorDeAtracciones {
 			    int cupo =  Integer.parseInt(datos[3]);
 			    String tipoAtraccion = datos[4];
 			    tipo tipoDeAtraccion = null;
-			    if (datos[4].equals("Aventura")) {
+			    
+			    
+			    if (tipoAtraccion.toUpperCase().equals("AVENTURA")) {
 	        		tipoDeAtraccion = tipo.AVENTURA;
 	        	} 
-	        	else if (datos[4].equals("Paisaje")){
+	        	else if (tipoAtraccion.toUpperCase().equals("PAISAJE")){
 	        		tipoDeAtraccion = tipo.PAISAJE;
 	        	}
-	        	else if (datos[4].equals("Degustacion")){
+	        	else if (tipoAtraccion.toUpperCase().equals("DEGUSTACION")){
 	        		tipoDeAtraccion = tipo.DEGUSTACION;
 	        	}
 			    
