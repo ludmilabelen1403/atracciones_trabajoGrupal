@@ -2,3 +2,4 @@ Eowyn,aventura,10,8
 Gandalf,PaiSAJE,100,5
 Sam,DEGUSTaCION,36,8
 Galadriel,PAisAJE,120,5
+Galadriel,PAisAJE,120,5

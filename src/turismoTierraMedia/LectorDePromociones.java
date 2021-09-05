@@ -25,7 +25,7 @@ ArrayList<Atraccion> ListaDeAtracciones = lectorAtracciones.getAtracciones("atra
 				String promoSubUno= promocion[1];
 				String promoSubDos = promocion[2];
 				String promoSubTres = promocion[3];
-				
+				//
 				
 			
 

@@ -25,7 +25,7 @@ public class LectorDeAtracciones {
 			    String datos[] = linea.split(",");
 			    //creo una atracción a partir de la linea que leo
 			    //public Atraccion(String nombre, double costo, double tiempo, int cupo,  tipo tipo) {
-				
+				//
 			    String nombreDeAtraccion =datos [0];
 			    double costoDeAtraccion = Double.parseDouble(datos[1]);
 			    double tiempo = Double.parseDouble(datos[2]);
