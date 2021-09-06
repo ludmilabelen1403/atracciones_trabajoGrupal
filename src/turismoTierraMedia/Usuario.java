@@ -1,11 +1,15 @@
 package turismoTierraMedia;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class Usuario {
 
 	private String nombre;
 	private double presupuesto;
 	private double tiempoDisponible;
 	private tipo preferencia;
+	ArrayList<Producto> productos;
 	
 	public Usuario(String nombre, tipo preferencia, double presupuesto, double tiempoDisponible) {
 		this.nombre = nombre;
@@ -36,7 +40,8 @@ public class Usuario {
 		return this.preferencia;
 	}
 	
-	public void ordenarPorPreferencia() {
-		//List.sort(usuario, new Ofertable.compare());
+	public static ArrayList<Producto> listaDePreferencias(ArrayList<Producto> productos, tipo preferencia) {
+		Collections.sort(productos, new Ofertable(preferencia));
+		return productos;
 	}
 }

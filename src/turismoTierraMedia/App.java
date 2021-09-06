@@ -1,20 +1,20 @@
 package turismoTierraMedia;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class App {
 	
 	private List<Usuario> usuarios;
-	private List<Producto> productos = new LinkedList<Producto>();
+	private static ArrayList<Producto> productos = new ArrayList<Producto>();
+	static App app;
 	
-	public static void main(String[] args) {
-		List<Atraccion> atracciones = new LinkedList<Atraccion>();
-		List<Promocion> promociones = new LinkedList<Promocion>();
+	private static void cargaDatos(App app) {
+		ArrayList<Atraccion> atracciones = new ArrayList<Atraccion>();
+		ArrayList<Promocion> promociones = new ArrayList<Promocion>();
 		
-		App app = new App();
 		LectorDeUsuarios lector = new LectorDeUsuarios();
 		app.usuarios = lector.getUsuarios("usuarios.txt");
 		LectorDeAtracciones lectorAtracciones = new LectorDeAtracciones();
@@ -29,11 +29,39 @@ public class App {
 		for (Promocion promocion: promociones) {
 			app.productos.add(promocion);
 		}
+	}
+	
+	public static void main(String[] args) {
+		app = new App();
+		cargaDatos(app);
+		
+		ArrayList<Producto> itinerario = new ArrayList<Producto>();
+		
+		Scanner sc = new Scanner(System.in);
+		String respuesta;
 		
 		for (Usuario usuario: app.usuarios) {
-			
+			System.out.println(usuario);
+			usuario.listaDePreferencias(productos, usuario.getPreferencia());
+			for (Producto producto: productos) {
+				if (producto.tieneCupo()) {
+					do {
+						System.out.println("Desea aceptar el siguiente producto? " + producto + " Y/N");
+						respuesta = sc.next();
+					}	while((!respuesta.toUpperCase().equals("Y")) && (!respuesta.toUpperCase().equals("N")));
+					if (respuesta.toUpperCase().equals("Y")) {			
+						itinerario.add(producto);
+						producto.setCupo(producto.getCupo()-1);
+					}
+				}
+			}
+			System.out.println(usuario);
+			System.out.println(itinerario);
+			System.out.println(productos);
 		}
+		System.out.println();
 	}
+}
 	
 /*Atraccion [] atracciones;
 	Usuario[] usuarios;
@@ -190,8 +218,6 @@ public class App {
 	
 	}
 	*/
-	
-	
-}
+
 
 
