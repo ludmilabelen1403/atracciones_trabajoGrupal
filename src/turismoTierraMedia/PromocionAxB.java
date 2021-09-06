@@ -4,8 +4,14 @@ public class PromocionAxB extends Promocion {
 
 	public PromocionAxB(String nombre, Atraccion atraccion1, Atraccion atraccion2, Atraccion atraccionGratis) {
 		super(nombre, atraccion1, atraccion2);
+		validarPromocionAxB(atraccion1,atraccionGratis);
+	}
+	
+	public PromocionAxB(String nombre, Atraccion atraccion1, Atraccion atraccion2, Atraccion atraccionGratis, double costo, double tiempo, tipo tipoDeAtraccion, int cupo) {
+		super(nombre, costo, tiempo, tipoDeAtraccion, cupo);
+		this.atraccion1 = atraccion1;
+		this.atraccion2 = atraccion2;
 		this.atraccionGratis = atraccionGratis;
-		//validarPromocionAxB(this.atraccion1,this.atraccion2,this.atraccionGratis);
 	}
 
 	@Override
@@ -23,15 +29,15 @@ public class PromocionAxB extends Promocion {
 		return super.getNombre() + ": " + super.getAtraccion1().getNombre() + " y " + super.getAtraccion2().getNombre() + " con " + this.atraccionGratis.getNombre() + " gratis";
 	}
 	
-	private void validarPromocionAxB(Atraccion atraccion1, Atraccion atraccion2,Atraccion atraccionGratis) {
-		if (getAtraccion1() == atraccionGratis || getAtraccion2() == atraccionGratis) {
-			throw new Error("La Atraccion gratis debe ser diferente a las otras atracciones");
-	}
+	private void validarPromocionAxB(Atraccion atraccion1, Atraccion atraccionGratis) {
+		if (atraccion1.getTipoDeAtraccion() != atraccionGratis.getTipoDeAtraccion()) {
+			throw new Error("La atracción gratis debe ser del mismo tipo de las otras atracciones");
+		}
+		this.atraccionGratis = atraccionGratis;
 	}
 
 	@Override
 	protected boolean esPromo() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 }

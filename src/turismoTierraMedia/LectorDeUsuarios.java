@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class LectorDeUsuarios {
 
-	public static ArrayList<Usuario> getUsuarios(String archivo){
+	public ArrayList<Usuario> getUsuarios(String archivo){
 			
 			ArrayList<Usuario> Usuarios = new ArrayList<Usuario>();
 			

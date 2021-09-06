@@ -13,7 +13,7 @@ public class LectorDeAtracciones {
 		return this.Atracciones;
 	}
 	
-	public static ArrayList<Atraccion> getAtracciones(String archivo){
+	public ArrayList<Atraccion> getAtracciones(String archivo){
 		ArrayList<Atraccion> Atracciones = new ArrayList<Atraccion>();
 		try {
 			Scanner sc = null;
@@ -32,24 +32,24 @@ public class LectorDeAtracciones {
 			    int cupo =  Integer.parseInt(datos[3]);
 			    String tipoAtraccion = datos[4];
 			    tipo tipoDeAtraccion = null;
-			    if (datos[4].equals("Aventura")) {
+			    if (datos[4].equals("AVENTURA")) {
 	        		tipoDeAtraccion = tipo.AVENTURA;
 	        	} 
-	        	else if (datos[4].equals("Paisaje")){
+	        	else if (datos[4].equals("PAISAJE")){
 	        		tipoDeAtraccion = tipo.PAISAJE;
 	        	}
-	        	else if (datos[4].equals("Degustacion")){
+	        	else if (datos[4].equals("DEGUSTACION")){
 	        		tipoDeAtraccion = tipo.DEGUSTACION;
 	        	}
 			    
-			    Atraccion a = new Atraccion(nombreDeAtraccion,costoDeAtraccion,tiempo,cupo,tipoDeAtraccion);
+			    Atraccion a = new Atraccion(nombreDeAtraccion,costoDeAtraccion,tiempo,tipoDeAtraccion,cupo);
 			    
 			    Atracciones.add(a);
 			    
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			System.out.println("no se encontró archivo");
+			System.out.println("No se encontró el archivo");
 		}
 		return Atracciones;
 	}
