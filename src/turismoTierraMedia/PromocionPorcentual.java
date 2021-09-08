@@ -36,4 +36,35 @@ protected double descuento;
 	protected boolean esPromo() {
 		return false;
 	}
+	@Override
+	public void restarCupo() {
+		super.atraccion1.restarCupo();
+		super.atraccion2.restarCupo();
+	
+	}
+	public void verificarCupos() throws Exception {
+		if(this.atraccion1.tieneCupo()&& this.atraccion2.tieneCupo()) {
+			cupo = this.atraccion1.cupo+this.atraccion2.cupo;
+		}
+		else {
+			throw new Exception ("una de las atracciones no cuenta con el cupo suficiente");
+		}
+	}
+	@Override
+	public int getCupo() {
+		return super.atraccion1.getCupo()+super.atraccion2.getCupo();
+	}
+	public void setCupo(int cupo) {
+		this.cupo-=cupo;
+	}
+
+	@Override
+	public double getCosto() {
+		
+		return super.atraccion1.getCosto()+super.atraccion2.getCosto();
+	}
+	@Override
+	public double getTiempo() {
+		return super.atraccion1.getTiempo()+super.atraccion2.getTiempo();
+	}
 }

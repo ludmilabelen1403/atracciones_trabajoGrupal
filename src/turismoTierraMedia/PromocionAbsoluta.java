@@ -4,10 +4,27 @@ package turismoTierraMedia;
 public class PromocionAbsoluta extends Promocion {
 
 	public double monto;
+	
 		
 	public PromocionAbsoluta(String nombre,Atraccion atraccion1, Atraccion atraccion2, double monto) {
 		super(nombre, atraccion1, atraccion2);
 		this.monto = monto;
+		
+	}
+	
+	@Override
+	public int getCupo() {
+		return super.atraccion1.getCupo()+super.atraccion2.getCupo();
+	}
+	
+	public void setCupo(int cupo) {
+		this.cupo-=cupo;
+	}
+	@Override
+	public void restarCupo() {
+		super.atraccion1.restarCupo();
+		super.atraccion2.restarCupo();
+	
 	}
 
 	public PromocionAbsoluta(String nombre, Atraccion atraccion1, Atraccion atraccion2, double monto, double costo, double tiempo, tipo tipoDeAtraccion, int cupo) {
@@ -44,5 +61,17 @@ public class PromocionAbsoluta extends Promocion {
 	protected boolean esPromo() {
 		return false;
 	}
+
+	@Override
+	public double getCosto() {
+		return this.monto;
+	}
+	
+	@Override
+	public double getTiempo() {
+		return super.atraccion1.getTiempo()+super.atraccion2.getTiempo();
+	}
+
+	
 }
 	

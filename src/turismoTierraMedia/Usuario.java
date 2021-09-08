@@ -9,7 +9,7 @@ public class Usuario {
 	private double presupuesto;
 	private double tiempoDisponible;
 	private tipo preferencia;
-	ArrayList<Producto> productos;
+	protected ArrayList<Producto> itinerario;
 	
 	public Usuario(String nombre, tipo preferencia, double presupuesto, double tiempoDisponible) {
 		this.nombre = nombre;
@@ -18,6 +18,22 @@ public class Usuario {
 		this.preferencia = preferencia;
 	}
 	
+	public void crearItinerario() {
+		this.itinerario = new ArrayList<Producto>();
+	}
+	public void agregarProducto(Producto producto) {
+		itinerario.add(producto);
+		restarPresupuesto(producto.getCosto());
+		restarTiempo(producto.getTiempo());
+	}
+	
+	public void restarTiempo(double tiempoDelProducto) {
+		this.tiempoDisponible-=tiempoDelProducto;
+	}
+	
+	public void restarPresupuesto(double costoDelProducto) {
+		 this.presupuesto-=costoDelProducto;
+	}
 	public String toString() {
 		return this.nombre + " prefiere las atracciones del tipo " + this.preferencia + ", tiene " + this.presupuesto + " monedas disponibles y cuenta con " + this.tiempoDisponible + " horas disponibles";
 	}
@@ -40,6 +56,14 @@ public class Usuario {
 		return this.preferencia;
 	}
 	
+	public ArrayList<Producto> getItinerario() {
+		return itinerario;
+	}
+
+	public void setItinerario(ArrayList<Producto> itinerario) {
+		this.itinerario = itinerario;
+	}
+
 	public static ArrayList<Producto> listaDePreferencias(ArrayList<Producto> productos, tipo preferencia) {
 		Collections.sort(productos, new Ofertable(preferencia));
 		return productos;

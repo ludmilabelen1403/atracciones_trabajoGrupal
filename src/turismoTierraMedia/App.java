@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 
 
+
+
 public class App {
 	
 	private List<Usuario> usuarios;
@@ -31,37 +33,83 @@ public class App {
 		}
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		app = new App();
 		cargaDatos(app);
 		
-		ArrayList<Producto> itinerario = new ArrayList<Producto>();
+		
 		
 		Scanner sc = new Scanner(System.in);
 		String respuesta;
 		
 		for (Usuario usuario: app.usuarios) {
+			
 			System.out.println(usuario);
+			usuario.crearItinerario();
 			usuario.listaDePreferencias(productos, usuario.getPreferencia());
 			for (Producto producto: productos) {
 				if (producto.tieneCupo()) {
+					if (usuario.getTiempoDisponible()>1 && usuario.getPresupuesto()>3) {
 					do {
 						System.out.println("Desea aceptar el siguiente producto? " + producto + " Y/N");
 						respuesta = sc.next();
 					}	while((!respuesta.toUpperCase().equals("Y")) && (!respuesta.toUpperCase().equals("N")));
-					if (respuesta.toUpperCase().equals("Y")) {			
-						itinerario.add(producto);
-						producto.setCupo(producto.getCupo()-1);
+					if (respuesta.toUpperCase().equals("Y")) {
+						 if (usuario.getPresupuesto()< producto.getCosto()) {
+				            	System.out.println("Usted no posee el dinero suficiente para comprar este producto");
+						 }else if(usuario.getTiempoDisponible()<producto.getTiempo()) { 
+							 System.out.println(" usted no dispone del tiempo suficiente para adquirir este producto");
+						 }
+					else {
+						
+						usuario.agregarProducto(producto);
+				
+						producto.restarCupo();
+						
+						
+			            System.out.println("ha comprado el producto "+producto.getNombre()+" , "+  producto.getNombre() +" contiene ahora "+producto.getCupo()+ " lugares disponibles");		
+				            	}
+                            }
 					}
 				}
+				}
+			
+			
+			ArrayList <String> ItinerarioFinalNombres= new ArrayList<String>();
+			
+			for (int i = 0; i<usuario.getItinerario().size();i++) {
+				String nombre = usuario.getItinerario().get(i).getNombre();
+				ItinerarioFinalNombres.add(nombre);
 			}
-			System.out.println(usuario);
-			System.out.println(itinerario);
-			System.out.println(productos);
+			
+			double GastoTotalDelUsuario = 0;
+			
+			for (int i = 0; i<usuario.getItinerario().size();i++) {
+				
+				double gasto = 0;
+				gasto+= usuario.getItinerario().get(i).getCosto();
+				GastoTotalDelUsuario+=gasto;
+				gasto = 0;
+			}
+			
+          double TiempoGastadoDelUsuario = 0;
+			
+			for (int i = 0; i<usuario.getItinerario().size();i++) {
+				
+				double gasto = 0;
+				gasto+= usuario.getItinerario().get(i).getTiempo();
+				TiempoGastadoDelUsuario+=gasto;
+				gasto = 0;
+			}
+			System.out.println("el itinerario de "+ usuario.getNombre() +" es " + ItinerarioFinalNombres+ " gastó en total: "+ GastoTotalDelUsuario+ " monedas, y gastó "+ TiempoGastadoDelUsuario+" horas.");
+			
+			
 		}
 		System.out.println();
 	}
-}
+	}
+
+
 	
 /*Atraccion [] atracciones;
 	Usuario[] usuarios;

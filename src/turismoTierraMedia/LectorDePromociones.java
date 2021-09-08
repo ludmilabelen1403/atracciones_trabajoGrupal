@@ -76,7 +76,10 @@ public class LectorDePromociones {
 	public static void main(String[] args) {
 		 
 		LectorDePromociones lectorPromo = new LectorDePromociones();
-		   
-		System.out.println( lectorPromo.getPromociones("promociones.txt"));
+	    ArrayList<Promocion> promociones = lectorPromo.getPromociones("promociones.txt");
+	    System.out.println(promociones.get(1).getCupo());
+	    
+	
+	
 	}
 }

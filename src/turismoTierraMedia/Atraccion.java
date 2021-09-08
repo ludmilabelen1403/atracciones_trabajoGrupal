@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Atraccion extends Producto {
 
 	public String nombre;
-	private int cupo;
+	 public int cupo;
 	private double tiempo;
 	private double costo;
 	private tipo tipoAtraccion;
@@ -14,14 +14,18 @@ public class Atraccion extends Producto {
 		super(nombre, costo, tiempo, tipo, cupo);
 	}
 	
+	@Override
 	public String getNombre() {
 		return super.nombre;
 	}
+	
+	
 	
 	public tipo getTipoDeAtraccion() {
 		return super.tipoDeAtraccion;
 	}
 	
+	@Override
 	public double getCosto() {
 		return super.costo;
 	}
@@ -65,6 +69,12 @@ public class Atraccion extends Producto {
 				&& Objects.equals(nombre, other.nombre)
 				&& Double.doubleToLongBits(tiempo) == Double.doubleToLongBits(other.tiempo)
 				&& tipoAtraccion == other.tipoAtraccion;
+	}
+
+	@Override
+	public void restarCupo() {
+		super.cupo-=1;
+		
 	}
 }
 
