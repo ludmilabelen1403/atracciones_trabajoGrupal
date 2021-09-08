@@ -25,7 +25,7 @@ public class LectorDeUsuarios {
 				    String nombreDeUsuario =datos [0];
 				   
 				    String tipoDePreferencia = datos[1];
-				    tipo preferencia = tipo.valueOf(tipoDePreferencia);
+				    tipo preferencia = tipo.valueOf(tipoDePreferencia.toUpperCase());
 				    
 				    double presupuesto = Double.parseDouble(datos[2]);
 				    double tiempoDisponible = Double.parseDouble(datos[3]);

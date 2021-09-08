@@ -9,19 +9,48 @@ public abstract class Promocion extends Producto{
 	protected Atraccion atraccion2;
 	protected tipo tipoDeAtraccion;
 	Atraccion [] atracciones;
+	protected int cupo ;
+	protected Atraccion atraccionGratis;
 	
 	public Promocion(String nombre, double costo, double tiempo, tipo tipoDeAtraccion, int cupo) {
 		super(nombre, costo, tiempo, tipoDeAtraccion, cupo);
 	}
 	
+	
+	
+	
+	public Promocion(String nombre, String nombre2, Atraccion atraccion1, Atraccion atraccion2, tipo tipoDeAtraccion,
+			Atraccion[] atracciones, int cupo, Atraccion atraccionGratis) {
+		super(nombre);
+		nombre = nombre2;
+		this.atraccion1 = atraccion1;
+		this.atraccion2 = atraccion2;
+		this.tipoDeAtraccion = tipoDeAtraccion;
+		this.atracciones = atracciones;
+		this.cupo = cupo;
+		this.atraccionGratis = atraccionGratis;
+	}
+
+
+
+
 	protected Promocion(String nombre, Atraccion atraccion1, Atraccion atraccion2) {
 		super(nombre);
 		validarPromocion(atraccion1, atraccion2);
 	}
+	 
+  
 	
+	
+	
+	
+
+
+
 	protected abstract double calcularPromocion();
 	
-	protected String getNombre() {
+	@Override
+	public String getNombre() {
 		return super.nombre;
 	}
 	
@@ -66,4 +95,17 @@ public abstract class Promocion extends Producto{
 				&& Arrays.equals(atracciones, other.atracciones) && Objects.equals(nombre, other.nombre)
 				&& tipoDeAtraccion == other.tipoDeAtraccion;
 	}
+	
+	public abstract void restarCupo() ;
+	public int getCupo() {
+		return cupo;
+	}
+
+	
+
+	public void setCupo(int cupo) {
+		this.cupo = cupo;
+	}
+	
+	
 }

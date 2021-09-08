@@ -29,16 +29,26 @@ public class LectorDeAtracciones {
 			    String nombreDeAtraccion =datos [0];
 			    double costoDeAtraccion = Double.parseDouble(datos[1]);
 			    double tiempo = Double.parseDouble(datos[2]);
-			    int cupo =  Integer.parseInt(datos[3]);
+			    int cupo = 0 ;
+			    
 			    String tipoAtraccion = datos[4];
 			    tipo tipoDeAtraccion = null;
-			    if (datos[4].equals("AVENTURA")) {
+			    
+			    try {
+			    	 cupo =  Integer.parseInt(datos[3]);
+			    
+			    }catch(NumberFormatException nfe){
+			    	System.out.println("El valor no es un entero");
+			    }
+			    
+			    
+			    if (tipoAtraccion.toUpperCase().equals("AVENTURA")) {
 	        		tipoDeAtraccion = tipo.AVENTURA;
 	        	} 
-	        	else if (datos[4].equals("PAISAJE")){
+	        	else if (tipoAtraccion.toUpperCase().equals("PAISAJE")){
 	        		tipoDeAtraccion = tipo.PAISAJE;
 	        	}
-	        	else if (datos[4].equals("DEGUSTACION")){
+	        	else if (tipoAtraccion.toUpperCase().equals("DEGUSTACION")){
 	        		tipoDeAtraccion = tipo.DEGUSTACION;
 	        	}
 			    
@@ -56,6 +66,8 @@ public class LectorDeAtracciones {
 	
 	public static void main(String[] args) {
 		 LectorDeAtracciones lectorA = new LectorDeAtracciones();
+		 
+//		 if(lectorA.getAtracciones(null))
 		 System.out.println(lectorA.getAtracciones("atracciones.txt"));
 	}
 }

@@ -1,11 +1,20 @@
 package turismoTierraMedia;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 
+
+
 public class App {
+	
+	
+	private static HashMap<String, ArrayList<Producto>>dicUsuarios = new HashMap();
+	
+	
+	
 	
 	private List<Usuario> usuarios;
 	private static ArrayList<Producto> productos = new ArrayList<Producto>();
@@ -31,193 +40,92 @@ public class App {
 		}
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		app = new App();
 		cargaDatos(app);
 		
-		ArrayList<Producto> itinerario = new ArrayList<Producto>();
+		
 		
 		Scanner sc = new Scanner(System.in);
 		String respuesta;
 		
 		for (Usuario usuario: app.usuarios) {
+			
 			System.out.println(usuario);
+			usuario.crearItinerario();
 			usuario.listaDePreferencias(productos, usuario.getPreferencia());
 			for (Producto producto: productos) {
 				if (producto.tieneCupo()) {
+					if (usuario.getTiempoDisponible()>1 && usuario.getPresupuesto()>3) {
 					do {
 						System.out.println("Desea aceptar el siguiente producto? " + producto + " Y/N");
 						respuesta = sc.next();
 					}	while((!respuesta.toUpperCase().equals("Y")) && (!respuesta.toUpperCase().equals("N")));
-					if (respuesta.toUpperCase().equals("Y")) {			
-						itinerario.add(producto);
-						producto.setCupo(producto.getCupo()-1);
+					if (respuesta.toUpperCase().equals("Y")) {
+						 if (usuario.getPresupuesto()< producto.getCosto()) {
+				            	System.out.println("Usted no posee el dinero suficiente para comprar este producto");
+						 }else if(usuario.getTiempoDisponible()<producto.getTiempo()) { 
+							 System.out.println(" usted no dispone del tiempo suficiente para adquirir este producto");
+						 }
+					else {
+						
+						usuario.agregarProducto(producto);
+				
+						producto.restarCupo();
+						
+						
+			            System.out.println("ha comprado el producto "+producto.getNombre()+" , "+  producto.getNombre() +" contiene ahora "+producto.getCupo()+ " lugares disponibles");		
+				            	}
+                            }
 					}
 				}
+				
+				
+				
+				}
+			dicUsuarios.put(usuario.getNombre(), usuario.getItinerario() );
+			
+			ArrayList <String> ItinerarioFinalNombres= new ArrayList<String>();
+			
+			for (int i = 0; i<usuario.getItinerario().size();i++) {
+				String nombre = usuario.getItinerario().get(i).getNombre();
+				ItinerarioFinalNombres.add(nombre);
 			}
-			System.out.println(usuario);
-			System.out.println(itinerario);
-			System.out.println(productos);
+			
+			
+			double GastoTotalDelUsuario = 0;
+			
+			for (int i = 0; i<usuario.getItinerario().size();i++) {
+				
+				double gasto = 0;
+				gasto+= usuario.getItinerario().get(i).getCosto();
+				GastoTotalDelUsuario+=gasto;
+				gasto = 0;
+			}
+			
+          double TiempoGastadoDelUsuario = 0;
+			
+			for (int i = 0; i<usuario.getItinerario().size();i++) {
+				
+				double gasto = 0;
+				gasto+= usuario.getItinerario().get(i).getTiempo();
+				TiempoGastadoDelUsuario+=gasto;
+				gasto = 0;
+			}
+			System.out.println("el itinerario de "+ usuario.getNombre() +" es " + ItinerarioFinalNombres+ " gastó en total: "+ GastoTotalDelUsuario+ " monedas, y gastó "+ TiempoGastadoDelUsuario+" horas.");
+			
+			
 		}
 		System.out.println();
+		System.out.println("Itinerario== " +  dicUsuarios);
 	}
-}
 	
-/*Atraccion [] atracciones;
-	Usuario[] usuarios;
-	Promocion[] promociones;
-	
-	public static void main(String[] args) {
-		FileReader fr = null;
-	    BufferedReader br =null;
-		
-		// Atracciones
-	    Atraccion[] atracciones = new Atraccion[10];
-	    int numLineaAtraccion = 0;
-	    
-	    try {
-	    	fr = new FileReader("atracciones.txt");
-	        br = new BufferedReader(fr);
-	        String linea;
-	        
-	        
-	        while((linea=br.readLine())!=null) {
-	        	String [] atraccion = linea.split(",");
-	        	tipo tipoDeAtraccion = null;
-	        		        	
-	        	if (atraccion[4].equals("Aventura")) {
-	        		tipoDeAtraccion = tipo.AVENTURA;
-	        	} 
-	        	else if (atraccion[4].equals("Paisaje")){
-	        		tipoDeAtraccion = tipo.PAISAJE;
-	        	}
-	        	else if (atraccion[4].equals("Degustacion")){
-	        		tipoDeAtraccion = tipo.DEGUSTACION;
-	        	}
-	        	
-	        	Atraccion a = new Atraccion(atraccion[0], Double.parseDouble(atraccion[1]), Double.parseDouble(atraccion[2]), Integer.parseInt(atraccion[3]), tipoDeAtraccion);
-	        	atracciones[numLineaAtraccion] = a;
-	        	numLineaAtraccion++;
-	        }
-	    }
-	    catch(IOException e){
-	        e.printStackTrace();
-	    }
-	    finally{
-	        try{                    
-	            if( fr != null ){   
-	                fr.close();     
-	            }                  
-	        }catch (Exception e2){ 
-	            e2.printStackTrace();
-	        }
-	    }
-	    System.out.println(Arrays.deepToString(atracciones));
-	    
-	    
-	    //Usuarios
-	    Usuario[] usuarios = new Usuario[10];
-	    int numLineaUsuario = 0;
-	    
-	    try {
-	    	fr = new FileReader("usuarios.txt");
-	        br = new BufferedReader(fr);
-	        String linea;
-	        
-	        while((linea=br.readLine())!=null) {
-	        	String [] usuario = linea.split(",");
-	        	
-	        	tipo tipoDeAtraccion = null;
-	        	
-	        	if (usuario[1].equals("Aventura")) {
-	        		tipoDeAtraccion = tipo.AVENTURA;
-	        	} 
-	        	else if (usuario[1].equals("Paisaje")){
-	        		tipoDeAtraccion = tipo.PAISAJE;
-	        	}
-	        	else if (usuario[1].equals("Degustacion")){
-	        		tipoDeAtraccion = tipo.DEGUSTACION;
-	        	}
-	        	
-	        	Usuario u = new Usuario(usuario[0], tipoDeAtraccion, Double.parseDouble(usuario[2]), Double.parseDouble(usuario[3]));
-	        	usuarios[numLineaUsuario] = u;
-	        	numLineaUsuario++;
-	        }
-	    }
-	    catch(IOException e){
-	        e.printStackTrace();
-	    }
-	    finally{
-	        try{                    
-	            if( fr != null ){   
-	                fr.close();     
-	            }                  
-	        }catch (Exception e2){ 
-	            e2.printStackTrace();
-	        }
-	    }
-	    System.out.println(Arrays.deepToString(usuarios));
-	    
-	    
-	    //Promociones
-	    ArrayList<Promocion> Promociones = new ArrayList<Promocion>();
-	    
-	    
-	    try {
-	    	fr = new FileReader("promociones.txt");
-	        br = new BufferedReader(fr);
-	        String linea;
-	        
-	        while((linea=br.readLine())!=null) {
-	        	String [] promocion = linea.split(",");
-	        	int index1 = 0, index2 = 0, index3 = 0;
-	        	Promocion a;
-	        	
-	        	for (int i = 0; i < numLineaAtraccion-1; i++) {
-	        		if (promocion[1].strip().equals(atracciones[i].getNombre())){
-	        			index1=i;
-	        		}
-	        		if (promocion[2].strip().equals(atracciones[i].getNombre())){
-	        			index2=i;
-	        		}
-	        		if (promocion[3].strip().equals(atracciones[i].getNombre())){
-	        			index3=i;
-	        		}
-	        	}
-	        	
-	        	if (promocion[3].matches(".*\\d.*")) {
-	        		double valor = Double.parseDouble(promocion[3]);
-	        		if (valor < 1) {
-	        			a = new PromocionPorcentual(promocion[0], atracciones[index1], atracciones[index2], valor);
-	        		}
-	        		else {
-	        			a = new PromocionAbsoluta(promocion[0], atracciones[index1], atracciones[index2], Double.parseDouble(promocion[3]));
-	        		}
-	        	}
-	        	else {
-	        		a = new PromocionAxB(promocion[0], atracciones[index1], atracciones[index2], atracciones[index3]);
-	        	}
-	        	
-	        	promociones[numLineaPromocion] = a;
-	        	numLineaPromocion++;
-	        }
-	    }
-	    catch(IOException e){
-	        e.printStackTrace();
-	    }
-	    finally{
-	        try{                    
-	            if( fr != null ){   
-	                fr.close();     
-	            }                  
-	        }catch (Exception e2){ 
-	            e2.printStackTrace();
-	        }
-	    }
-	    System.out.println(Arrays.deepToString(promociones));
 	
 	}
-	*/
+
+
+	
+
 
 
 
