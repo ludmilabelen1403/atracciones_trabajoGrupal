@@ -81,7 +81,7 @@ public class LectorDePromociones {
 		 
 		LectorDePromociones lectorPromo = new LectorDePromociones();
 	    ArrayList<Promocion> promociones = lectorPromo.getPromociones("promociones.txt");
-	    System.out.println(promociones.get(1).getCupo());
+	    System.out.println(promociones);
 	    
 	
 	
