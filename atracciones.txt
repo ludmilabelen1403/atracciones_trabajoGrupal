@@ -1,9 +1,8 @@
-Moria,10,2,6,AveNTURA
-Bosque Negro,3,4,12,AVENtuRA
+Moria,n,2,n,AVeNTURA
+Bosque Negro,3,n,12,AVENtuRA
 Minas Tirith,5,2.5,25,paisaje
 La Comarca,3,6.5,150,degustacion
-Mordor,25,3,4,aventura
+Mordor,25,3,4,a1entura
 Abismo de Helm,5,2,15,paisaje
 Lothlorien,35,1,30,DEgusSTACION
-Erebor,12,3,32,PAisAJE
 Erebor,12,3,32,PAisAJE

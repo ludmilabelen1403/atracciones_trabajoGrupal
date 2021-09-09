@@ -1,4 +1,4 @@
-Eowyn,aventura,10,8
+Eowyn,aventura,10,n
 Gandalf,PaiSAJE,100,5
 Sam,DEGUSTaCION,36,8
 Galadriel,PAisAJE,120,5

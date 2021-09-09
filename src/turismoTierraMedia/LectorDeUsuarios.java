@@ -22,19 +22,30 @@ public class LectorDeUsuarios {
 				    String datos[] = linea.split(",");
 				    //public Usuario(String nombre, tipo preferencia, double presupuesto, double tiempoDisponible
 					
-				    String nombreDeUsuario =datos [0];
-				   
-				    String tipoDePreferencia = datos[1];
+				    String nombreDeUsuario =datos [0];				   
+				    String tipoDePreferencia = datos[1];		   
+				    double presupuesto;
+			    	double tiempoDisponible;
 				    tipo preferencia = tipo.valueOf(tipoDePreferencia.toUpperCase());
 				    
-				    double presupuesto = Double.parseDouble(datos[2]);
-				    double tiempoDisponible = Double.parseDouble(datos[3]);
+				    try {
+				    	presupuesto = Double.parseDouble(datos[2]);
+				        tiempoDisponible = Double.parseDouble(datos[3]);
+				    	
+				        Usuario UsuarioNuevo = new Usuario(nombreDeUsuario, preferencia, presupuesto, tiempoDisponible);
+				        Usuarios.add(UsuarioNuevo);
+				        
+				        
+				    } catch (NumberFormatException ne) {
+				    	System.out.println("error, uno de los campos ingresados no es double");
+				    }
+				    
+				    //
+				    
 				    
 				 
 				    
-				   Usuario UsuarioNuevo = new Usuario(nombreDeUsuario, preferencia, presupuesto, tiempoDisponible);
 				    
-				    Usuarios.add(UsuarioNuevo);
 				}
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
