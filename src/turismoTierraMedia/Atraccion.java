@@ -14,6 +14,8 @@ public class Atraccion extends Producto {
 		super(nombre, costo, tiempo, tipo, cupo);
 	}
 	
+	
+
 	@Override
 	public String getNombre() {
 		return super.nombre;
