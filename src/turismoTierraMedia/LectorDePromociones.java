@@ -63,11 +63,8 @@ public class LectorDePromociones {
 				Promociones.add(d);
 			}
 		}
-		catch (TipoAtraccionException tae){
-            System.err.println(tae.getMessage());
-        }
 		catch (NumberFormatException nfe) {
-			System.out.println("Deben ingresarse nÃºmeros");
+			System.out.println("Deben ingresarse números");
 		}
 		catch (IOException e) {
 			e.printStackTrace();

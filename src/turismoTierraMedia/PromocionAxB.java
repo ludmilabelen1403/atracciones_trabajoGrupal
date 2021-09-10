@@ -47,7 +47,7 @@ public class PromocionAxB extends Promocion {
 	private void validarPromocionAxB(Atraccion atraccion1, Atraccion atraccionGratis) {
 		try {
 			if (atraccion1.getTipoDeAtraccion() != atraccionGratis.getTipoDeAtraccion()) {
-				throw new TipoAtraccionException ("La atracciÃ³n gratis debe ser del mismo tipo que las otras atracciones");
+				throw new TipoAtraccionException ("La atracción gratis debe ser del mismo tipo que las otras atracciones");
 			}
 			this.atraccionGratis = atraccionGratis;
 		}

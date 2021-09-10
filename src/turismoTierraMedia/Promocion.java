@@ -77,6 +77,7 @@ public abstract class Promocion extends Producto{
 	}
 	
 	public abstract void restarCupo() ;
+	
 	public int getCupo() {
 		return cupo;
 	}
