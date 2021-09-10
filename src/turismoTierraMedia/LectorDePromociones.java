@@ -1,25 +1,24 @@
 package turismoTierraMedia;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class LectorDePromociones {
 	public ArrayList<Promocion> getPromociones(String archivo) {
 		ArrayList<Promocion> Promociones = new ArrayList<Promocion>();
-		FileReader fr = null;
-		BufferedReader br = null;
 		LectorDeAtracciones lectorAtracciones = new LectorDeAtracciones();
 		
 		try {
 			ArrayList<Atraccion> ListaDeAtracciones = lectorAtracciones.getAtracciones("atracciones.txt");
-			fr = new FileReader("promociones.txt");
-			br = new BufferedReader(fr);
-			String linea;
-
-			while ((linea = br.readLine()) != null) {
+			Scanner sc = null;
+			sc = new Scanner(new File("promociones.txt"));
+			
+			while(sc.hasNext()) {
+				String linea = sc.nextLine();
 				String[] promocion = linea.split(",");
+				
 				int index1 = 0, index2 = 0, index3 = 0;
 				String promoSubCero = corregirLetras(promocion[0]);
 				String promoSubUno = corregirLetras(promocion[1]);
@@ -48,34 +47,38 @@ public class LectorDePromociones {
 	        		double valor = Double.parseDouble(promoSubTres);
 	        		if (valor < 1) {
 	        			p = new PromocionPorcentual(promoSubCero, ListaDeAtracciones.get(index1), ListaDeAtracciones.get(index2), valor);
+	        			if (p.getAtraccion1() == null) {
+		        			 continue;
+		        		 }
 	        			d = new PromocionPorcentual(p.getNombre(), p.getAtraccion1(), p.getAtraccion2(), valor, p.calcularPromocion(), p.calcularTiempo(), tipoDeAtraccion, Math.min(p.atraccion1.getCupo(), p.atraccion2.getCupo()));
 	        		}
 	        		else {
 	        			p = new PromocionAbsoluta(promoSubCero, ListaDeAtracciones.get(index1), ListaDeAtracciones.get(index2), Double.parseDouble(promoSubTres));
+	        			if (p.getAtraccion1() == null) {
+		        			 continue;
+		        		 }
 	        			d = new PromocionAbsoluta(p.getNombre(), p.getAtraccion1(), p.getAtraccion2(), p.calcularPromocion(), p.calcularPromocion(), p.calcularTiempo(), tipoDeAtraccion, Math.min(p.atraccion1.getCupo(), p.atraccion2.getCupo()));
 	        		}
 	        	}
 	        	else {
 	        		 p = new PromocionAxB(promoSubCero, ListaDeAtracciones.get(index1), ListaDeAtracciones.get(index2), ListaDeAtracciones.get(index3));
+	        		 if ((p.getAtraccion1() == null) || (p.getAtraccionGratis() == null)){
+	        			 continue;
+	        		 }
 	        		 d = new PromocionAxB(p.getNombre(), p.getAtraccion1(), p.getAtraccion2(), ListaDeAtracciones.get(index3), p.calcularPromocion(), p.calcularTiempo(), tipoDeAtraccion, Math.min(Math.min(p.atraccion1.getCupo(),p.atraccion2.getCupo()),ListaDeAtracciones.get(index3).getCupo()));
 	        	}
 				
 				Promociones.add(d);
 			}
 		}
+		catch (TipoAtraccionException tae){
+            System.err.println("Las atracciones deben ser del mismo tipo");
+        }
 		catch (NumberFormatException nfe) {
 			System.out.println("Deben ingresarse números");
 		}
 		catch (IOException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				if (fr != null) {
-					fr.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
 		}
 		return Promociones;
 }

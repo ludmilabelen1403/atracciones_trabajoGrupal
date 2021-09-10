@@ -1,4 +1,3 @@
-
 Pack aveNTura, Bosque Negro, Mordor, 0.20
 Pack degustacion, Lothlorien, La Comarca, 36
 Pack paisaJes, Minas Tirith, Abismo de Helm, Erebor

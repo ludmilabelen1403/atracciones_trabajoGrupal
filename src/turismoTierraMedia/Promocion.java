@@ -88,5 +88,7 @@ public abstract class Promocion extends Producto{
 		this.cupo = cupo;
 	}
 	
-	
+	protected Atraccion getAtraccionGratis() {
+		return this.atraccionGratis;
+	}
 }
