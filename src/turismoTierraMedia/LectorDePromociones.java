@@ -6,12 +6,31 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class LectorDePromociones {
+	
+//	public String correctorNombrePromo() {
+//		
+//	}
+	public String corregirLetras(String palabra) {
+		char aux[] = palabra.toCharArray();
+		for (int i = 0; i < aux.length; i++) {
+			if(i == 0) {
+				palabra = String.valueOf(aux[0]).toUpperCase();
+			}
+			else {
+				palabra += String.valueOf(aux[i]).toLowerCase();
+			}
+		}
+		
+		return palabra;
+	}
+	
+	
 	public ArrayList<Promocion> getPromociones(String archivo) {
 		ArrayList<Promocion> Promociones = new ArrayList<Promocion>();
 		FileReader fr = null;
 		BufferedReader br = null;
 		LectorDeAtracciones lectorAtracciones = new LectorDeAtracciones();
-		
+
 		try {
 			ArrayList<Atraccion> ListaDeAtracciones = lectorAtracciones.getAtracciones("atracciones.txt");
 			fr = new FileReader("promociones.txt");
@@ -26,6 +45,9 @@ public class LectorDePromociones {
 				String promoSubDos = corregirLetras(promocion[2]);
 				String promoSubTres = corregirLetras(promocion[3]);
 				tipo tipoDeAtraccion = null;
+				
+				
+				
 
 				for (int i = 0; i < ListaDeAtracciones.size(); i++) {
 					if (promoSubUno.strip().equalsIgnoreCase(ListaDeAtracciones.get(i).getNombre())) {
@@ -67,8 +89,9 @@ public class LectorDePromociones {
             System.err.println(tae.getMessage());
         }
 		catch (NumberFormatException nfe) {
-			System.out.println("Deben ingresarse números");
+			System.out.println("Deben ingresarse nï¿½meros");
 		}
+
 		catch (IOException e) {
 			e.printStackTrace();
 		} finally {

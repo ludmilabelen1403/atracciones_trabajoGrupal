@@ -11,8 +11,9 @@ protected double descuento;
 	
 	public PromocionPorcentual(String nombre,Atraccion atraccion1, Atraccion atraccion2, double descuento, double costo, double tiempo, tipo tipoDeAtraccion, int cupo) {
 		super(nombre, costo, tiempo, tipoDeAtraccion, cupo);
-		this.atraccion1 = atraccion1;
-		this.atraccion2 = atraccion2;
+		this.validarPromocionPorcentual(atraccion1, atraccion2);
+		
+		
 		this.descuento = descuento;
 	}
 	
@@ -66,5 +67,19 @@ protected double descuento;
 	@Override
 	public double getTiempo() {
 		return super.atraccion1.getTiempo()+super.atraccion2.getTiempo();
+	}
+	
+	private void validarPromocionPorcentual(Atraccion atraccion1, Atraccion atraccion2) {
+		try {
+			if (atraccion1.getTipoDeAtraccion() != atraccion2.getTipoDeAtraccion()) {
+				throw new TipoDeAtraccionException ("La atracción gratis debe ser del mismo tipo que las otras atracciones");
+			}
+			this.atraccion1 = atraccion1;
+			this.atraccion2 = atraccion2;
+			this.tipoDeAtraccion = atraccion1.getTipoDeAtraccion();
+		}
+		catch (TipoDeAtraccionException tae){
+            System.err.println(tae.getMessage());
+        }
 	}
 }

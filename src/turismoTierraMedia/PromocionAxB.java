@@ -4,6 +4,7 @@ public class PromocionAxB extends Promocion {
 	public PromocionAxB(String nombre, Atraccion atraccion1, Atraccion atraccion2, Atraccion atraccionGratis) {
 		super(nombre, atraccion1, atraccion2);
 		validarPromocionAxB(atraccion1,atraccionGratis);
+
 	}
 
 	
@@ -44,17 +45,16 @@ public class PromocionAxB extends Promocion {
 		return super.getNombre() + ": " + super.getAtraccion1().getNombre() + " y " + super.getAtraccion2().getNombre() + " con " + this.atraccionGratis.getNombre() + " gratis";
 	}
 	
-	private void validarPromocionAxB(Atraccion atraccion1, Atraccion atraccionGratis) {
+	private void validarPromocionAxB(Atraccion atraccion1, Atraccion atraccion2, Atraccion atraccionGratis) {
 		try {
-			if (atraccion1.getTipoDeAtraccion() != atraccionGratis.getTipoDeAtraccion()) {
-				throw new TipoAtraccionException ("La atracción gratis debe ser del mismo tipo que las otras atracciones");
+			if (atraccion1.getTipoDeAtraccion() != atraccion2.getTipoDeAtraccion() && atraccionGratis.getTipoDeAtraccion() != atraccion1.getTipoDeAtraccion()) {
+				throw new TipoDeAtraccionException ("La atracciÃ³n gratis debe ser del mismo tipo que las otras atracciones");
 			}
 			this.atraccionGratis = atraccionGratis;
 		}
-		catch (TipoAtraccionException tae){
+		catch (TipoDeAtraccionException tae){
             System.err.println(tae.getMessage());
         }
-	
 	}
 
 	@Override
