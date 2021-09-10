@@ -6,13 +6,32 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class LectorDePromociones {
+	
+//	public String correctorNombrePromo() {
+//		
+//	}
+	public String corregirLetras(String palabra) {
+		char aux[] = palabra.toCharArray();
+		for (int i = 0; i < aux.length; i++) {
+			if(i == 0) {
+				palabra = String.valueOf(aux[0]).toUpperCase();
+			}
+			else {
+				palabra += String.valueOf(aux[i]).toLowerCase();
+			}
+		}
+		
+		return palabra;
+	}
+	
+	
 	public ArrayList<Promocion> getPromociones(String archivo) {
 		ArrayList<Promocion> Promociones = new ArrayList<Promocion>();
 		FileReader fr = null;
 		BufferedReader br = null;
 		LectorDeAtracciones lectorAtracciones = new LectorDeAtracciones();
-		ArrayList<Atraccion> ListaDeAtracciones = lectorAtracciones.getAtracciones("atracciones.txt");
 		try {
+			ArrayList<Atraccion> ListaDeAtracciones = lectorAtracciones.getAtracciones("atracciones.txt");
 			fr = new FileReader("promociones.txt");
 			br = new BufferedReader(fr);
 			String linea;
@@ -20,22 +39,25 @@ public class LectorDePromociones {
 			while ((linea = br.readLine()) != null) {
 				String[] promocion = linea.split(",");
 				int index1 = 0, index2 = 0, index3 = 0;
-				String promoSubCero = promocion[0];
-				String promoSubUno = promocion[1];
-				String promoSubDos = promocion[2];
-				String promoSubTres = promocion[3];
+				String promoSubCero = corregirLetras(promocion[0]);
+				String promoSubUno = corregirLetras(promocion[1]);
+				String promoSubDos = corregirLetras(promocion[2]);
+				String promoSubTres = corregirLetras(promocion[3]);
 				tipo tipoDeAtraccion = null;
+				
+				
+				
 
 				for (int i = 0; i < ListaDeAtracciones.size(); i++) {
-					if (promoSubUno.toUpperCase().equals(ListaDeAtracciones.get(i).getNombre())) {
+					if (promoSubUno.strip().equalsIgnoreCase(ListaDeAtracciones.get(i).getNombre())) {
 						index1 = i;
 						tipoDeAtraccion = ListaDeAtracciones.get(i).getTipoDeAtraccion();
 					}
-					if (promoSubDos.toUpperCase().equals(ListaDeAtracciones.get(i).getNombre())) {
+					if (promoSubDos.strip().equalsIgnoreCase(ListaDeAtracciones.get(i).getNombre())) {
 						index2 = i;
 						tipoDeAtraccion = ListaDeAtracciones.get(i).getTipoDeAtraccion();
 					}
-					if (promoSubTres.toUpperCase().equals(ListaDeAtracciones.get(i).getNombre())) {
+					if (promoSubTres.strip().equalsIgnoreCase(ListaDeAtracciones.get(i).getNombre())) {
 						index3 = i;
 						tipoDeAtraccion = ListaDeAtracciones.get(i).getTipoDeAtraccion();
 					}
@@ -62,6 +84,9 @@ public class LectorDePromociones {
 				Promociones.add(d);
 			}
 		}
+	 catch (TipoDeAtraccionException tae) {
+		System.err.println(tae.getMessage());
+	}
 		catch (IOException e) {
 			e.printStackTrace();
 		} finally {
