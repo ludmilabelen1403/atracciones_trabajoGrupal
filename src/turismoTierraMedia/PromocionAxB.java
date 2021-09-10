@@ -1,15 +1,10 @@
 package turismoTierraMedia;
 public class PromocionAxB extends Promocion {
-	
-
-	
-	
-	
 
 	public PromocionAxB(String nombre, Atraccion atraccion1, Atraccion atraccion2, Atraccion atraccionGratis) {
 		super(nombre, atraccion1, atraccion2);
-		this.atraccionGratis=atraccionGratis;
-		validarPromocionAxB(atraccion1,atraccion2 ,atraccionGratis);
+		validarPromocionAxB(atraccion1,atraccionGratis);
+
 	}
 
 	
@@ -53,7 +48,7 @@ public class PromocionAxB extends Promocion {
 	private void validarPromocionAxB(Atraccion atraccion1, Atraccion atraccion2, Atraccion atraccionGratis) {
 		try {
 			if (atraccion1.getTipoDeAtraccion() != atraccion2.getTipoDeAtraccion() && atraccionGratis.getTipoDeAtraccion() != atraccion1.getTipoDeAtraccion()) {
-				throw new TipoDeAtraccionException ("La atracción gratis debe ser del mismo tipo que las otras atracciones");
+				throw new TipoDeAtraccionException ("La atracciÃ³n gratis debe ser del mismo tipo que las otras atracciones");
 			}
 			this.atraccionGratis = atraccionGratis;
 		}

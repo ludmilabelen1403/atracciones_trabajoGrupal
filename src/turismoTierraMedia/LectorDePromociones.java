@@ -30,6 +30,7 @@ public class LectorDePromociones {
 		FileReader fr = null;
 		BufferedReader br = null;
 		LectorDeAtracciones lectorAtracciones = new LectorDeAtracciones();
+
 		try {
 			ArrayList<Atraccion> ListaDeAtracciones = lectorAtracciones.getAtracciones("atracciones.txt");
 			fr = new FileReader("promociones.txt");
@@ -84,9 +85,13 @@ public class LectorDePromociones {
 				Promociones.add(d);
 			}
 		}
-	 catch (TipoDeAtraccionException tae) {
-		System.err.println(tae.getMessage());
-	}
+		catch (TipoAtraccionException tae){
+            System.err.println(tae.getMessage());
+        }
+		catch (NumberFormatException nfe) {
+			System.out.println("Deben ingresarse n�meros");
+		}
+
 		catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -101,6 +106,19 @@ public class LectorDePromociones {
 		return Promociones;
 }
 	
+	public String corregirLetras(String palabra) {
+		char aux[] = palabra.toCharArray();
+		for (int i = 0; i < aux.length; i++) {
+			if(i == 0) {
+				palabra = String.valueOf(aux[0]).toUpperCase();
+			}
+			else {
+				palabra += String.valueOf(aux[i]).toLowerCase();
+			}
+		}
+		
+		return palabra;
+	}
 		 
 	public static void main(String[] args) {
 		 

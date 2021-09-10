@@ -11,6 +11,13 @@ public class PromocionAbsoluta extends Promocion {
 		this.monto = monto;
 		
 	}
+
+	public PromocionAbsoluta(String nombre, Atraccion atraccion1, Atraccion atraccion2, double monto, double costo, double tiempo, tipo tipoDeAtraccion, int cupo) {
+		super(nombre, costo, tiempo, tipoDeAtraccion, cupo);
+		this.atraccion1 = atraccion1;
+		this.atraccion2 = atraccion2;
+		this.monto = monto;
+	}
 	
 	public PromocionAbsoluta(String nombre, Atraccion atraccion1, Atraccion atraccion2, double monto, double costo, double tiempo, tipo tipoDeAtraccion, int cupo) {
 		super(nombre, costo, tiempo, tipoDeAtraccion, cupo);
