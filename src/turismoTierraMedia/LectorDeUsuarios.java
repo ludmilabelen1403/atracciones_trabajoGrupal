@@ -27,19 +27,35 @@ public class LectorDeUsuarios {
 				    String tipoDePreferencia = datos[1];
 				    tipo preferencia = tipo.valueOf(tipoDePreferencia.toUpperCase());
 				    
-				    double presupuesto = Double.parseDouble(datos[2]);
-				    double tiempoDisponible = Double.parseDouble(datos[3]);
+				    double presupuesto;
+				    double tiempoDisponible;
 				    
-				 
+				    try {
+				    	presupuesto = Double.parseDouble(datos[2]);
+				        tiempoDisponible = Double.parseDouble(datos[3]);
+
+				        Usuario UsuarioNuevo = new Usuario(nombreDeUsuario, preferencia, presupuesto, tiempoDisponible);
+				        Usuarios.add(UsuarioNuevo);
+
+
+				    } catch (NumberFormatException ne) {
+				    	System.out.println("error, uno de los campos ingresados no es double");
+				    }
+
 				    
-				   Usuario UsuarioNuevo = new Usuario(nombreDeUsuario, preferencia, presupuesto, tiempoDisponible);
-				    
-				    Usuarios.add(UsuarioNuevo);
+				   
+				
 				}
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
-				System.out.println("no se encontró archivo");
+				
 			}
 		return Usuarios;
 	}
+	
+public static void main(String[] args) {
+	LectorDeUsuarios lector  =  new LectorDeUsuarios();
+	lector.getUsuarios("usuarios.txt");
+	System.out.println(lector.getUsuarios("usuarios.txt"));
+}
 }
