@@ -16,6 +16,12 @@ public class Atraccion extends Producto {
 	
 	
 
+	public Atraccion() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	@Override
 	public String getNombre() {
 		return super.nombre;
