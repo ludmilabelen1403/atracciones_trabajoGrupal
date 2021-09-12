@@ -11,6 +11,38 @@ public class Usuario {
 	private tipo preferencia;
 	protected ArrayList<Producto> itinerario;
 	
+	
+
+	public double gastoTotal() {
+		
+		double GastoTotalDelUsuario = 0;
+		
+		for (int i = 0; i < this.getItinerario().size(); i++) {
+			
+			double gasto = 0;
+			gasto +=this.getItinerario().get(i).getCosto();
+			GastoTotalDelUsuario += gasto;
+			gasto = 0;
+		}
+		return GastoTotalDelUsuario;
+	}
+	
+	public double gastoTotalTiempo() {
+		double TiempoGastadoDelUsuario = 0;
+		
+		for (int i = 0; i < this.getItinerario().size(); i++) {
+			
+			double gasto = 0;
+			gasto += this.getItinerario().get(i).getTiempo();
+			TiempoGastadoDelUsuario += gasto;
+			gasto = 0;
+		}
+		
+		return TiempoGastadoDelUsuario;
+		
+	}
+
+	
 	public Usuario(String nombre, tipo preferencia, double presupuesto, double tiempoDisponible) {
 		this.nombre = nombre;
 		this.presupuesto = presupuesto;
