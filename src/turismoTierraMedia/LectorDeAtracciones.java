@@ -37,8 +37,6 @@ public class LectorDeAtracciones {
 		    		costoDeAtraccion =  Double.parseDouble(datos[1]);
 		    		tiempo = Double.parseDouble(datos[2]);
 
-
-
 		    			if (tipoAtraccion.toUpperCase().equals("AVENTURA")) {
 		    				tipoDeAtraccion = tipo.AVENTURA;
 		    			} 
@@ -52,23 +50,21 @@ public class LectorDeAtracciones {
 		    			Atraccion a = new Atraccion(nombreDeAtraccion,costoDeAtraccion,tiempo,tipoDeAtraccion,cupo);
 		    			Atracciones.add(a);
 
-
 				} catch (NumberFormatException nfe)   {
 		    		System.out.println("Error, en una de las entradas ingresadas no está especificado un int o un double");
 		    	} 
 
-				}
-				
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-				System.out.println("no se encontró archivo");
 			}
-			
+				
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			System.out.println("no se encontró archivo");
+		}
 			return Atracciones;
-		}
-		
-		public static void main(String[] args) {
-			 LectorDeAtracciones lectorA = new LectorDeAtracciones();
-			 System.out.println(lectorA.getAtracciones("atracciones.txt"));
-		}
 	}
+		
+	public static void main(String[] args) {
+		 LectorDeAtracciones lectorA = new LectorDeAtracciones();
+		 System.out.println(lectorA.getAtracciones("atracciones.txt"));
+	}
+}

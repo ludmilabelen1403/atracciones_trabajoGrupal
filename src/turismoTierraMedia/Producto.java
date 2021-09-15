@@ -1,7 +1,6 @@
 package turismoTierraMedia;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Objects;
 
 
@@ -17,13 +16,6 @@ public abstract class Producto {
 		this.nombre = nombre;
 	}
 	
-	
-	
-	
-	public Producto() {
-		
-	}
-	
 	public  Producto(String nombre, double costo, double tiempo, tipo tipoDeAtraccion, int cupo) {
 		this.nombre = nombre;
 		this.costo = costo;
@@ -36,11 +28,9 @@ public abstract class Producto {
 		return this.cupo >= 1;
 	}
 	
-	
 	public abstract String getNombre();
 
     public abstract double getCosto();
-
 
 	public int getCupo() {
 		return cupo;
@@ -49,7 +39,6 @@ public abstract class Producto {
 	public void setCupo(int cupo) {
 		this.cupo = cupo;
 	}
-	
 	
 	protected abstract void restarCupo() ;
 
@@ -75,9 +64,8 @@ public abstract class Producto {
 				&& tipoDeAtraccion == other.tipoDeAtraccion;
 	}
 
-
-
-
 	protected abstract double getTiempo();
+	
+	public abstract boolean contiene(Producto producto);
 }
 

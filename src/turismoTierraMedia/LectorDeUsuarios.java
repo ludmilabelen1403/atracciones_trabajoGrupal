@@ -11,10 +11,9 @@ public class LectorDeUsuarios {
 			
 			ArrayList<Usuario> Usuarios = new ArrayList<Usuario>();
 			
-			
 			try {
 				Scanner sc = null;
-				sc = new Scanner(new File("usuarios.txt"));
+				sc = new Scanner(new File(archivo));
 				
 				while(sc.hasNext()) {
 					//leo cada linea del archivo
@@ -41,10 +40,6 @@ public class LectorDeUsuarios {
 				    } catch (NumberFormatException ne) {
 				    	System.out.println("error, uno de los campos ingresados no es double");
 				    }
-
-				    
-				   
-				
 				}
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -53,9 +48,8 @@ public class LectorDeUsuarios {
 		return Usuarios;
 	}
 	
-public static void main(String[] args) {
-	LectorDeUsuarios lector  =  new LectorDeUsuarios();
-	lector.getUsuarios("usuarios.txt");
-	System.out.println(lector.getUsuarios("usuarios.txt"));
-}
+	public static void main(String[] args) {
+		LectorDeUsuarios lector  =  new LectorDeUsuarios();
+		System.out.println(lector.getUsuarios("usuarios.txt"));
+	}
 }

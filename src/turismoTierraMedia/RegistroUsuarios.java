@@ -36,11 +36,7 @@ public class RegistroUsuarios {
 		escritura.write("deberá pagar un total de " + String.valueOf( u.gastoTotal())+" monedas \n" );
 		escritura.write( "deberá invertir un tiempo total de " +String.valueOf( u.gastoTotalTiempo())+" horas.\n");
 		
-		
-		
 		escritura.close();
-	
 	}
-	
-	
+		
 }

@@ -5,7 +5,6 @@ public class PromocionAxB extends Promocion {
 		super(nombre, atraccion1, atraccion2);
 		validarPromocionAxB(atraccion1,atraccionGratis);
 	}
-
 	
 	public PromocionAxB(String nombre, Atraccion atraccion1, Atraccion atraccion2, Atraccion atraccionGratis, double costo, double tiempo, tipo tipoDeAtraccion, int cupo) {
 		super(nombre, costo, tiempo, tipoDeAtraccion, cupo);
@@ -21,9 +20,11 @@ public class PromocionAxB extends Promocion {
 			super.atraccionGratis.restarCupo();
 	   }
 		
+	
 	public void setCupo(int cupo) {
 		this.cupo-=cupo;
 	}
+	
 	@Override
 	public int getCupo() {
 		return super.atraccion1.getCupo()+super.atraccion2.getCupo()+super.atraccionGratis.getCupo();
@@ -59,17 +60,22 @@ public class PromocionAxB extends Promocion {
 
 	@Override
 	protected boolean esPromo() {
-		return false;
+		return true;
 	}
-
 
 	@Override
 	public double getCosto() {
 		
 		return super.atraccion1.getCosto()+super.atraccion2.getCosto();
 	}
+	
 	@Override
 	public double getTiempo() {
 		return super.atraccion1.getTiempo()+super.atraccion2.getTiempo()+ super.atraccionGratis.getTiempo();
+	}
+	
+	@Override
+	public boolean contiene(Producto producto) {
+		return super.contiene(producto) || producto.contiene(atraccionGratis);
 	}
 }

@@ -3,7 +3,6 @@ package turismoTierraMedia;
 import java.util.Arrays;
 import java.util.Objects;
 
-
 public abstract class Promocion extends Producto{
 	protected String nombre;
 	protected Atraccion atraccion1;
@@ -40,17 +39,14 @@ public abstract class Promocion extends Producto{
 	protected abstract double calcularTiempo();
 	
 	private void validarPromocion(Atraccion atraccion1, Atraccion atraccion2) {
-		try {
-			if (atraccion1.getTipoDeAtraccion() != atraccion2.getTipoDeAtraccion()) {
-				throw new TipoAtraccionException ("Las atracciones deben ser del mismo tipo");
-			}
-			this.atraccion1 = atraccion1;
-			this.atraccion2 = atraccion2;
-			this.tipoDeAtraccion = atraccion1.getTipoDeAtraccion();
+		
+		if (atraccion1.getTipoDeAtraccion() != atraccion2.getTipoDeAtraccion()) {
+			throw new TipoAtraccionException ("Las atracciones deben ser del mismo tipo");
 		}
-		catch (TipoAtraccionException tae){
-            System.err.println(tae.getMessage());
-        }
+		this.atraccion1 = atraccion1;
+		this.atraccion2 = atraccion2;
+		this.tipoDeAtraccion = atraccion1.getTipoDeAtraccion();
+		
 	}
 
 	@Override
@@ -82,13 +78,16 @@ public abstract class Promocion extends Producto{
 		return cupo;
 	}
 
-	
-
 	public void setCupo(int cupo) {
 		this.cupo = cupo;
 	}
 	
 	protected Atraccion getAtraccionGratis() {
 		return this.atraccionGratis;
+	}
+	
+	@Override
+	public boolean contiene(Producto producto) {
+		return producto.contiene(atraccion1) || producto.contiene(atraccion2);
 	}
 }

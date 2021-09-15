@@ -13,7 +13,7 @@ public class LectorDePromociones {
 		try {
 			ArrayList<Atraccion> ListaDeAtracciones = lectorAtracciones.getAtracciones("atracciones.txt");
 			Scanner sc = null;
-			sc = new Scanner(new File("promociones.txt"));
+			sc = new Scanner(new File(archivo));
 			
 			while(sc.hasNext()) {
 				String linea = sc.nextLine();
@@ -81,7 +81,7 @@ public class LectorDePromociones {
 			e.printStackTrace();
 		}
 		return Promociones;
-}
+	}
 	
 	public String corregirLetras(String palabra) {
 		char aux[] = palabra.toCharArray();
@@ -97,13 +97,9 @@ public class LectorDePromociones {
 		return palabra;
 	}
 		 
-	public static void main(String[] args) {
-		 
+	public static void main(String[] args) {		
 		LectorDePromociones lectorPromo = new LectorDePromociones();
 	    ArrayList<Promocion> promociones = lectorPromo.getPromociones("promociones.txt");
 	    System.out.println(promociones);
-	    
-	
-	
 	}
 }

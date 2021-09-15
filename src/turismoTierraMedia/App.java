@@ -2,6 +2,7 @@ package turismoTierraMedia;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,9 +18,6 @@ public class App {
 		ArrayList<Atraccion> atracciones = new ArrayList<Atraccion>();
 		ArrayList<Promocion> promociones = new ArrayList<Promocion>();
 
-		
-		
-		
 		LectorDeUsuarios lector = new LectorDeUsuarios();
 		app.usuarios = lector.getUsuarios("usuarios.txt");
 		LectorDeAtracciones lectorAtracciones = new LectorDeAtracciones();
@@ -50,7 +48,13 @@ public class App {
 			usuario.crearItinerario();
 			usuario.listaDePreferencias(productos, usuario.getPreferencia());
 			for (Producto producto : productos) {
-				if (producto.tieneCupo()) {
+				ArrayList<Producto> itinerario = usuario.getItinerario();
+				boolean contiene = false;
+				Iterator<Producto> itr = itinerario.iterator();
+				while (!contiene && itr.hasNext()) {
+					contiene = itr.next().contiene(producto);
+				}
+				if (producto.tieneCupo() && !contiene) {
 					if (usuario.getTiempoDisponible() >= producto.getTiempo() && usuario.getPresupuesto() >= producto.getCosto()) {
 						do {
 							System.out.println("Desea aceptar el siguiente producto? " + producto + " Y/N");
@@ -62,21 +66,15 @@ public class App {
 								usuario.agregarProducto(producto);
 
 								producto.restarCupo();
-
-							
-						
+								
+								System.out.println(
+										"Ha comprado el producto " + producto.getNombre() + " , " + producto.getNombre()
+										+ " contiene ahora " + producto.getCupo() + " lugares disponibles");
+						}
 					}
-						System.out.println(
-								"ha comprado el producto " + producto.getNombre() + " , " + producto.getNombre()
-								+ " contiene ahora " + producto.getCupo() + " lugares disponibles");
 				}
-
 			}
-
-
 			
-
-		}
 			dicUsuarios.put(usuario.getNombre(), usuario.getItinerario());
 			
 			ArrayList<String> ItinerarioFinalNombres = new ArrayList<String>();
@@ -86,11 +84,11 @@ public class App {
 			}
 			r.crearRegistro(usuario.getItinerario(), usuario);
 			System.out.println(
-					"el itinerario de " + usuario.getNombre() + " es " + ItinerarioFinalNombres + " gastó en total: "
+					"El itinerario de " + usuario.getNombre() + " es " + ItinerarioFinalNombres + " gastó en total: "
 							+ usuario.gastoTotal() + " monedas, y gastó " + usuario.gastoTotalTiempo() + " horas.");
-		System.out.println();
-		System.out.println("Itinerario== " + dicUsuarios);
-	}
+			System.out.println();
+			System.out.println("Itinerario== " + dicUsuarios);
+		}
 	}
 }
 

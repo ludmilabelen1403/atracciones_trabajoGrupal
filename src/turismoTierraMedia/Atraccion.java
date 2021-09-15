@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Atraccion extends Producto {
 
 	public String nombre;
-	 public int cupo;
+	public int cupo;
 	private double tiempo;
 	private double costo;
 	private tipo tipoAtraccion;
@@ -13,21 +13,11 @@ public class Atraccion extends Producto {
 	public Atraccion(String nombre, double costo, double tiempo,  tipo tipo, int cupo) {
 		super(nombre, costo, tiempo, tipo, cupo);
 	}
-	
-	
-
-	public Atraccion() {
-		// TODO Auto-generated constructor stub
-	}
-
-
 
 	@Override
 	public String getNombre() {
 		return super.nombre;
 	}
-	
-	
 	
 	public tipo getTipoDeAtraccion() {
 		return super.tipoDeAtraccion;
@@ -83,6 +73,14 @@ public class Atraccion extends Producto {
 	public void restarCupo() {
 		super.cupo-=1;
 		
+	}
+
+	@Override
+	public boolean contiene(Producto producto) {
+		if (producto.esPromo()) {
+			return producto.contiene(this);
+		}
+		return this.equals(producto);
 	}
 }
 

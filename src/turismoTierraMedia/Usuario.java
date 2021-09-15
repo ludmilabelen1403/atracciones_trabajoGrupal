@@ -11,8 +11,6 @@ public class Usuario {
 	private tipo preferencia;
 	protected ArrayList<Producto> itinerario;
 	
-	
-
 	public double gastoTotal() {
 		
 		double GastoTotalDelUsuario = 0;
@@ -42,7 +40,6 @@ public class Usuario {
 		
 	}
 
-	
 	public Usuario(String nombre, tipo preferencia, double presupuesto, double tiempoDisponible) {
 		this.nombre = nombre;
 		this.presupuesto = presupuesto;
@@ -53,6 +50,7 @@ public class Usuario {
 	public void crearItinerario() {
 		this.itinerario = new ArrayList<Producto>();
 	}
+	
 	public void agregarProducto(Producto producto) {
 		itinerario.add(producto);
 		restarPresupuesto(producto.getCosto());
@@ -69,8 +67,6 @@ public class Usuario {
 	public String toString() {
 		return this.nombre + " prefiere las atracciones del tipo " + this.preferencia + ", tiene " + this.presupuesto + " monedas disponibles y cuenta con " + this.tiempoDisponible + " horas disponibles";
 	}
-	
-	
 	
 	public String getNombre() {
 		return nombre;

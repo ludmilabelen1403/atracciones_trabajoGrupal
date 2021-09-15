@@ -16,7 +16,6 @@ protected double descuento;
 		this.descuento = descuento;
 	}
 	
-
 	@Override
 	public double calcularPromocion() {
 		return Math.round((atraccion1.getCosto() + atraccion2.getCosto()) * (1- this.descuento)*1000d)/1000d;
@@ -34,14 +33,16 @@ protected double descuento;
 
 	@Override
 	protected boolean esPromo() {
-		return false;
+		return true;
 	}
+	
 	@Override
 	public void restarCupo() {
 		super.atraccion1.restarCupo();
 		super.atraccion2.restarCupo();
 	
 	}
+	
 	public void verificarCupos() throws Exception {
 		if(this.atraccion1.tieneCupo()&& this.atraccion2.tieneCupo()) {
 			cupo = this.atraccion1.cupo+this.atraccion2.cupo;
@@ -50,19 +51,21 @@ protected double descuento;
 			throw new Exception ("una de las atracciones no cuenta con el cupo suficiente");
 		}
 	}
+	
 	@Override
 	public int getCupo() {
 		return super.atraccion1.getCupo()+super.atraccion2.getCupo();
 	}
+	
 	public void setCupo(int cupo) {
 		this.cupo-=cupo;
 	}
 
 	@Override
 	public double getCosto() {
-		
 		return super.atraccion1.getCosto()+super.atraccion2.getCosto();
 	}
+	
 	@Override
 	public double getTiempo() {
 		return super.atraccion1.getTiempo()+super.atraccion2.getTiempo();
