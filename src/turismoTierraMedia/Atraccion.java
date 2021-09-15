@@ -1,58 +1,88 @@
 package turismoTierraMedia;
 
+import java.util.Objects;
 
 public class Atraccion extends Producto {
 
 	public String nombre;
-	private int cupo;
+	 public int cupo;
 	private double tiempo;
 	private double costo;
 	private tipo tipoAtraccion;
 	
-	public Atraccion(String nombre, double costo, double tiempo, int cupo,  tipo tipo) {
-		super(nombre);
-		this.cupo = cupo;
-		this.tiempo = tiempo;
-		this.costo = costo;
-		this.tipoAtraccion = tipo;
+	public Atraccion(String nombre, double costo, double tiempo,  tipo tipo, int cupo) {
+		super(nombre, costo, tiempo, tipo, cupo);
+	}
+	
+	
+
+	public Atraccion() {
+		// TODO Auto-generated constructor stub
 	}
 
-	public Atraccion(String nombre, double costo, double tiempo, int cupo) {
-		super(nombre);
-		this.cupo = cupo;
-		this.tiempo = tiempo;
-		this.costo = costo;
-	
-	}
+
+
+	@Override
 	public String getNombre() {
 		return super.nombre;
 	}
 	
+	
+	
 	public tipo getTipoDeAtraccion() {
-		return this.tipoAtraccion;
+		return super.tipoDeAtraccion;
 	}
 	
+	@Override
 	public double getCosto() {
-		return this.costo;
+		return super.costo;
 	}
 	
 	public double getTiempo() {
-		return this.tiempo;
+		return super.tiempo;
 	}
 	
 	public int getCupo() {
-		return this.cupo;
+		return super.cupo;
 	}
 	
 	@Override
 	public String toString() {
-		return super.nombre + "(" + this.costo + " monedas, " + this.tiempo + " horas, " + this.cupo + " lugares, tipo: " + this.tipoAtraccion + ")";
+		return super.nombre + "(" + super.costo + " monedas, " + super.tiempo + " horas, " + super.cupo + " lugares, tipo: " + super.tipoDeAtraccion+ ")";
 	}
 
 	@Override
 	protected boolean esPromo() {
-		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(costo, cupo, nombre, tiempo, tipoAtraccion);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Atraccion other = (Atraccion) obj;
+		return Double.doubleToLongBits(costo) == Double.doubleToLongBits(other.costo) && cupo == other.cupo
+				&& Objects.equals(nombre, other.nombre)
+				&& Double.doubleToLongBits(tiempo) == Double.doubleToLongBits(other.tiempo)
+				&& tipoAtraccion == other.tipoAtraccion;
+	}
+
+	@Override
+	public void restarCupo() {
+		super.cupo-=1;
+		
 	}
 }
 

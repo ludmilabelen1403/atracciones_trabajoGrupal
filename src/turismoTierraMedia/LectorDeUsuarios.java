@@ -7,49 +7,55 @@ import java.util.Scanner;
 
 public class LectorDeUsuarios {
 
-public static ArrayList<Usuario> getUsuarios(String archivo){
-		
-		ArrayList<Usuario> Usuarios = new ArrayList<Usuario>();
-		
-		
-		try {
-			Scanner sc = null;
-			sc = new Scanner(new File("usuarios.txt"));
+	public ArrayList<Usuario> getUsuarios(String archivo){
 			
-			while(sc.hasNext()) {
-				//leo cada linea del archivo
-				String linea = sc.nextLine();
-			    String datos[] = linea.split(",");
-			    //public Usuario(String nombre, tipo preferencia, double presupuesto, double tiempoDisponible
+			ArrayList<Usuario> Usuarios = new ArrayList<Usuario>();
+			
+			
+			try {
+				Scanner sc = null;
+				sc = new Scanner(new File("usuarios.txt"));
 				
-			    String nombreDeUsuario =datos [0];
-			   
-			    String tipoDePreferencia = datos[1];
-			    tipo preferencia = tipo.valueOf(tipoDePreferencia);
-			    
-			    double presupuesto = Double.parseDouble(datos[2]);
-			    double tiempoDisponible = Double.parseDouble(datos[3]);
-			    
-			 
-			    
-			   Usuario UsuarioNuevo = new Usuario(nombreDeUsuario, preferencia, presupuesto, tiempoDisponible);
-			    
-			    Usuarios.add(UsuarioNuevo);
-			}
+				while(sc.hasNext()) {
+					//leo cada linea del archivo
+					String linea = sc.nextLine();
+				    String datos[] = linea.split(",");
+				    //public Usuario(String nombre, tipo preferencia, double presupuesto, double tiempoDisponible
+					
+				    String nombreDeUsuario =datos [0];
+				   
+				    String tipoDePreferencia = datos[1];
+				    tipo preferencia = tipo.valueOf(tipoDePreferencia.toUpperCase());
+				    
+				    double presupuesto;
+				    double tiempoDisponible;
+				    
+				    try {
+				    	presupuesto = Double.parseDouble(datos[2]);
+				        tiempoDisponible = Double.parseDouble(datos[3]);
+
+				        Usuario UsuarioNuevo = new Usuario(nombreDeUsuario, preferencia, presupuesto, tiempoDisponible);
+				        Usuarios.add(UsuarioNuevo);
+
+
+				    } catch (NumberFormatException ne) {
+				    	System.out.println("error, uno de los campos ingresados no es double");
+				    }
+
+				    
+				   
+				
+				}
 			} catch (FileNotFoundException e) {
-		e.printStackTrace();
-		System.out.println("no se encontró archivo");
+				e.printStackTrace();
+				
 			}
+		return Usuarios;
+	}
 	
-		
-	
-	return Usuarios;
+public static void main(String[] args) {
+	LectorDeUsuarios lector  =  new LectorDeUsuarios();
+	lector.getUsuarios("usuarios.txt");
+	System.out.println(lector.getUsuarios("usuarios.txt"));
 }
-
-
-
-
-
-	
-
 }

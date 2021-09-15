@@ -1,11 +1,38 @@
 package turismoTierraMedia;
 public class PromocionAxB extends Promocion {
-	public Atraccion atraccionGratis;
+	
+
+	
+	
+	
 
 	public PromocionAxB(String nombre, Atraccion atraccion1, Atraccion atraccion2, Atraccion atraccionGratis) {
 		super(nombre, atraccion1, atraccion2);
-		this.atraccionGratis = atraccionGratis;
-		//validarPromocionAxB(this.atraccion1,this.atraccion2,this.atraccionGratis);
+		this.atraccionGratis=atraccionGratis;
+		validarPromocionAxB(atraccion1,atraccionGratis);
+	}
+
+	
+	public PromocionAxB(String nombre, Atraccion atraccion1, Atraccion atraccion2, Atraccion atraccionGratis, double costo, double tiempo, tipo tipoDeAtraccion, int cupo) {
+		super(nombre, costo, tiempo, tipoDeAtraccion, cupo);
+		super.atraccion1 = atraccion1;
+		super.atraccion2 = atraccion2;
+		super.atraccionGratis = atraccionGratis;
+	}
+
+	@Override
+		public void  restarCupo() {
+			super.atraccion1.restarCupo();
+			super.atraccion2.restarCupo();
+			super.atraccionGratis.restarCupo();
+	   }
+		
+	public void setCupo(int cupo) {
+		this.cupo-=cupo;
+	}
+	@Override
+	public int getCupo() {
+		return super.atraccion1.getCupo()+super.atraccion2.getCupo()+super.atraccionGratis.getCupo();
 	}
 
 	@Override
@@ -23,15 +50,26 @@ public class PromocionAxB extends Promocion {
 		return super.getNombre() + ": " + super.getAtraccion1().getNombre() + " y " + super.getAtraccion2().getNombre() + " con " + this.atraccionGratis.getNombre() + " gratis";
 	}
 	
-	private void validarPromocionAxB(Atraccion atraccion1, Atraccion atraccion2,Atraccion atraccionGratis) {
-		if (getAtraccion1() == atraccionGratis || getAtraccion2() == atraccionGratis) {
-			throw new Error("La Atraccion gratis debe ser diferente a las otras atracciones");
-	}
+	private void validarPromocionAxB(Atraccion atraccion1, Atraccion atraccionGratis) {
+		if (atraccion1.getTipoDeAtraccion() != atraccionGratis.getTipoDeAtraccion()) {
+			throw new Error("La atracción gratis debe ser del mismo tipo de las otras atracciones");
+		}
+		this.atraccionGratis = atraccionGratis;
 	}
 
 	@Override
 	protected boolean esPromo() {
-		// TODO Auto-generated method stub
 		return false;
+	}
+
+
+	@Override
+	public double getCosto() {
+		
+		return super.atraccion1.getCosto()+super.atraccion2.getCosto();
+	}
+	@Override
+	public double getTiempo() {
+		return super.atraccion1.getTiempo()+super.atraccion2.getTiempo()+ super.atraccionGratis.getTiempo();
 	}
 }
