@@ -59,11 +59,6 @@ public class PromocionAxB extends Promocion {
 	}
 
 	@Override
-	protected boolean esPromo() {
-		return true;
-	}
-
-	@Override
 	public double getCosto() {
 		
 		return super.atraccion1.getCosto()+super.atraccion2.getCosto();

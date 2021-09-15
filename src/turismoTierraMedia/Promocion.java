@@ -90,4 +90,8 @@ public abstract class Promocion extends Producto{
 	public boolean contiene(Producto producto) {
 		return producto.contiene(atraccion1) || producto.contiene(atraccion2);
 	}
+	
+	protected boolean esPromo() {
+		return true;
+	}
 }

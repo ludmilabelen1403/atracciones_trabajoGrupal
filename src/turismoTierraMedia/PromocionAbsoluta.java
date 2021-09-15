@@ -54,11 +54,6 @@ public class PromocionAbsoluta extends Promocion {
 	}
 
 	@Override
-	protected boolean esPromo() {
-		return true;
-	}
-
-	@Override
 	public double getCosto() {
 		return this.monto;
 	}

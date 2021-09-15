@@ -30,11 +30,6 @@ protected double descuento;
 	public String toString() {
 		return super.getNombre() + " : " + super.getAtraccion1().getNombre() + " y " + super.getAtraccion2().getNombre() + " con un descuento del " + this.descuento * 100 + " %"+" por lo que el costo total es de "+ this.calcularPromocion() + " monedas";
 	}
-
-	@Override
-	protected boolean esPromo() {
-		return true;
-	}
 	
 	@Override
 	public void restarCupo() {
