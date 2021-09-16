@@ -58,7 +58,7 @@ protected double descuento;
 
 	@Override
 	public double getCosto() {
-		return super.atraccion1.getCosto()+super.atraccion2.getCosto();
+		return Math.round((atraccion1.getCosto() + atraccion2.getCosto()) * (1- this.descuento)*1000d)/1000d;
 	}
 	
 	@Override
